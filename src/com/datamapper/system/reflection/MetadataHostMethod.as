@@ -1,6 +1,5 @@
 package com.datamapper.system.reflection
 {
-import com.ia.nucleus.system.reflection.*;
   /**
    * Представление метода обернутого метатегами
    * 

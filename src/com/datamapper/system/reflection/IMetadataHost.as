@@ -1,6 +1,5 @@
 package com.datamapper.system.reflection
 {
-import com.ia.nucleus.system.reflection.*;
   /**
    * Интерфейс представляет  public-свойство, метод или класс
    * к которым присоеденены метаданные
@@ -23,7 +22,7 @@ import com.ia.nucleus.system.reflection.*;
     function set type(value:Class):void;
     
     
-    [ArrayElementType("com.ia.mobile.core.common.reflection.IMetadataTag")]
+    [ArrayElementType("com.datamapper.system.reflection.IMetadataTag")]
     /**
      * Масив прикрепленных метааргументов 
      */    

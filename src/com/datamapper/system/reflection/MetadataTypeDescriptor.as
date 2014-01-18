@@ -1,7 +1,7 @@
 package com.datamapper.system.reflection
 {
-  
-  import com.ia.nucleus.system.reflection.factory.MetadataFactory;
+
+import com.datamapper.system.reflection.factory.MetadataFactory;
   
   import flash.utils.Dictionary;
   import flash.utils.getDefinitionByName;

@@ -1,6 +1,5 @@
 package com.datamapper.system.reflection
 {
-import com.ia.nucleus.system.reflection.*;
   import flash.utils.Dictionary;
   import flash.utils.describeType;
   import flash.utils.getQualifiedClassName;

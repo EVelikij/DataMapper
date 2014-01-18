@@ -14,7 +14,7 @@ package com.datamapper.system.reflection
     function get name():String;
     function set name(value:String):void;
     
-    [ArrayElementType("com.ia.mobile.core.common.reflection.IMetadataArgument")]
+    [ArrayElementType("com.datamapper.system.reflection.IMetadataArgument")]
     /**
      * Масив аргументов определенных в метатеге 
      */    
