@@ -1,6 +1,7 @@
 package com.datamapper.system.reflection.factory
 {
-  import com.datamapper.system.reflection.IMetadataHost;
+import com.datamapper.system.MetadataNames;
+import com.datamapper.system.reflection.IMetadataHost;
   import com.datamapper.system.reflection.IMetadataTag;
   import com.datamapper.system.reflection.MetadataArgument;
   import com.datamapper.system.reflection.MetadataHostClass;
@@ -18,7 +19,7 @@ package com.datamapper.system.reflection.factory
    */  
   public class MetadataFactory
   { 
-    private static var registredMatadataTags:Array = [];
+    private static var registredMatadataTags:Array = [MetadataNames.ID];
     
     
     //--------------------------------------------------------------------------

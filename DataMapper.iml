@@ -4,6 +4,26 @@
     <configurations>
       <configuration name="DataMapper" output-type="Library" output-file="DataMapper.swc" output-folder="$MODULE_DIR$/out/production/DataMapper">
         <dependencies target-player="11.8">
+          <entries>
+            <entry library-id="5f9a476f-f5cb-41d5-bcaa-6eabf1a05eee">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="7241aa7f-7e40-413f-9d3d-a55b63d5cf58">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="a13bb865-2df6-4b4f-abf6-43416e149bbf">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="5a19824b-cf9f-4298-974c-2fe3075aec0f">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="ab6e4cd3-e637-4305-8edb-28126a55ce54">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="bd8e6b5f-eb1c-4fe7-9d18-1da4fb09d77d">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
           <sdk name="4.10" />
         </dependencies>
         <compiler-options />
@@ -18,9 +38,70 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/testSrc" isTestSource="true" />
     </content>
     <orderEntry type="jdk" jdkName="4.10" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="5f9a476f-f5cb-41d5-bcaa-6eabf1a05eee" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/flexunit-4.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="7241aa7f-7e40-413f-9d3d-a55b63d5cf58" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/flexunit-aircilistener-4.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="a13bb865-2df6-4b4f-abf6-43416e149bbf" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/flexunit-cilistener-4.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="5a19824b-cf9f-4298-974c-2fe3075aec0f" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/flexunit-flexcoverlistener-4.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="ab6e4cd3-e637-4305-8edb-28126a55ce54" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/flexunit-uilistener-4.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="bd8e6b5f-eb1c-4fe7-9d18-1da4fb09d77d" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/hamcrest-as3-flex-1.1.3.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 
