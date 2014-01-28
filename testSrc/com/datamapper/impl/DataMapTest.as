@@ -10,8 +10,11 @@ package com.datamapper.impl
 import avmplus.INCLUDE_BASES;
 
 import com.datamapper.errors.DataMapError;
-import com.datamapper.impl.support.FakeDataEntity;
+import com.datamapper.impl.support.fake.ManyForeignKeysTypeEntity;
+import com.datamapper.impl.support.fake.WithoutForeignKeyTypeEntity;
+import com.datamapper.impl.support.fake.WithoutInnerKeyEntity;
 import com.datamapper.impl.support.TestDataType;
+import com.datamapper.impl.support.fake.ManyInnerKeyEntity;
 
 import org.hamcrest.Matcher;
 
@@ -44,19 +47,58 @@ public class DataMapTest
   }
 
 
+  //--------------------------------------------------------------------------
+  //
+  //  Test fake data
+  //
+  //--------------------------------------------------------------------------
+  [Test]
+  /**
+   * Тестируем тип без внутреннего ключа
+   */
+  public function testInitWithoutInnerKey():void
+  {
+    var fakeMap:DataMap = new DataMap(WithoutInnerKeyEntity);
+    assertThatInit(fakeMap, throws(DataMapError));
+  }
+
+  [Test]
+  /**
+   * Тестируем тип с нескольким внутренними ключами
+   */
+  public function testInitManyInnerKey():void
+  {
+    var fakeMap:DataMap = new DataMap(ManyInnerKeyEntity);
+    assertThatInit(fakeMap, throws(DataMapError));
+  }
+
+  [Test]
+  /**
+   * Тестируем тип без свойства <code>type</code> для внешнего ключа
+   */
+  public function testWithoutForeignKeyType():void
+  {
+    var fakeMap:DataMap = new DataMap(WithoutForeignKeyTypeEntity);
+    assertThatInit(fakeMap, throws(DataMapError));
+  }
+
+  [Test]
+  /**
+   * Тестируем тип с одинаковыми свойствами <code>type</code> для
+   * разных внешнех ключей
+   */
+  public function testManyForeignKesyType():void
+  {
+    var fakeMap:DataMap = new DataMap(ManyForeignKeysTypeEntity);
+    assertThatInit(fakeMap, throws(DataMapError));
+  }
+
 
   //--------------------------------------------------------------------------
   //
   //  Test methods
   //
   //--------------------------------------------------------------------------
-  [Test]
-  public function testInitWithoutInnerKey():void
-  {
-    var fakeMap:DataMap = new DataMap(FakeDataEntity);
-    assertThatInit(fakeMap, throws(DataMapError));
-  }
-
   [Test]
   public function testInit():void
   {

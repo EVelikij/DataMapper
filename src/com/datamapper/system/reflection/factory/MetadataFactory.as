@@ -19,7 +19,8 @@ import com.datamapper.system.reflection.IMetadataHost;
    */  
   public class MetadataFactory
   { 
-    private static var registredMatadataTags:Array = [MetadataNames.ID];
+    private static var registredMatadataTags:Array = [MetadataNames.ID,
+                                                      MetadataNames.FOREIGN_KEY];
     
     
     //--------------------------------------------------------------------------

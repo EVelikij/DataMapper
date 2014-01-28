@@ -12,6 +12,7 @@ import com.datamapper.errors.DataMapError;
 import com.datamapper.system.MetadataNames;
 import com.datamapper.system.reflection.DescribeType;
 import com.datamapper.system.reflection.MetadataHostProperty;
+import com.datamapper.system.reflection.MetadataTag;
 import com.datamapper.system.reflection.MetadataTypeDescriptor;
 
 public class DataMap implements IDataMap
@@ -68,9 +69,9 @@ public class DataMap implements IDataMap
     // для указанного типа должно присутствовать только одно свойство
     // с мета тегом [Id]
     if (idHosts.length == 0)
-      throw DataMapError.innerKeyExistError(type);
+      throw DataMapError.innerKeyExist(type);
     else if (idHosts.length > 1)
-      throw DataMapError.manyKeyError(type);
+      throw DataMapError.manyInnerKey(type);
 
     // мы получили только одно свойство с мета тегом [Id]
     _id = idHosts[0];
@@ -81,7 +82,22 @@ public class DataMap implements IDataMap
    */
   private function initForeignKeys():void
   {
-    foreignKeys = description.getMetadataHostsWithTags(MetadataNames.FOREIGN_KEY);
+    foreignKeys = description.getMetadataTagsByName(MetadataNames.FOREIGN_KEY);
+
+    var fkTypes:Array = [];
+    for each (var key:MetadataTag in foreignKeys)
+    {
+      // для внешнего ключа отсутсвует тип
+      if (!key.hasArg("type"))
+        throw DataMapError.foreignKeyType(key.host.name, type);
+
+      var t:String = key.getArg("type").value;
+
+      if (fkTypes.indexOf(t) != -1)
+        throw DataMapError.manyForeignKeys(t, type);
+
+      fkTypes.push(t);
+    }
   }
 
 
