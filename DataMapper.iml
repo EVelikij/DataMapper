@@ -5,22 +5,19 @@
       <configuration name="DataMapper" output-type="Library" output-file="DataMapper.swc" output-folder="$MODULE_DIR$/out/production/DataMapper">
         <dependencies target-player="11.8">
           <entries>
-            <entry library-id="5f9a476f-f5cb-41d5-bcaa-6eabf1a05eee">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="7241aa7f-7e40-413f-9d3d-a55b63d5cf58">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="a13bb865-2df6-4b4f-abf6-43416e149bbf">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="5a19824b-cf9f-4298-974c-2fe3075aec0f">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="ab6e4cd3-e637-4305-8edb-28126a55ce54">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-id="bd8e6b5f-eb1c-4fe7-9d18-1da4fb09d77d">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="a0b3cd24-733c-4513-97eb-577066701394">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="37a49d15-62f4-470b-858c-5da74f486c56">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="bc19afe6-b218-4ac5-8359-42e7c5397936">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="4806649f-39c7-4973-b09d-f7b2e768b5b9">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -44,59 +41,49 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="5f9a476f-f5cb-41d5-bcaa-6eabf1a05eee" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/flexunit-4.0.0.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="7241aa7f-7e40-413f-9d3d-a55b63d5cf58" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/flexunit-aircilistener-4.0.0.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="a13bb865-2df6-4b4f-abf6-43416e149bbf" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/flexunit-cilistener-4.0.0.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="5a19824b-cf9f-4298-974c-2fe3075aec0f" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/flexunit-flexcoverlistener-4.0.0.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="ab6e4cd3-e637-4305-8edb-28126a55ce54" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/flexunit-uilistener-4.0.0.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
         <properties id="bd8e6b5f-eb1c-4fe7-9d18-1da4fb09d77d" />
         <CLASSES>
           <root url="jar://$MODULE_DIR$/libs/hamcrest-as3-flex-1.1.3.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="a0b3cd24-733c-4513-97eb-577066701394" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/fluint-extensions-4.1.0-8-4.1.0.16076.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="37a49d15-62f4-470b-858c-5da74f486c56" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/mockolate-0.12.4-flex.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="bc19afe6-b218-4ac5-8359-42e7c5397936" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/flexunit-cilistener-4.1.0-8-4.1.0.16076.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="4806649f-39c7-4973-b09d-f7b2e768b5b9" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/flexunit-4.1.0-8-flex_4.1.0.16076.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

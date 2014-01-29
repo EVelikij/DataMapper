@@ -8,6 +8,7 @@
 package com.datamapper.impl
 {
 import avmplus.INCLUDE_BASES;
+import avmplus.getQualifiedClassName;
 
 import com.datamapper.errors.DataMapError;
 import com.datamapper.impl.support.fake.ManyForeignKeysTypeEntity;
@@ -25,8 +26,22 @@ import org.hamcrest.core.not;
 import org.hamcrest.core.throws;
 import org.hamcrest.object.instanceOf;
 
+[RunWith("org.flexunit.runners.Parameterized")]
 public class DataMapTest
 {
+  //--------------------------------------------------------------------------
+  //
+  //  Parameters
+  //
+  //--------------------------------------------------------------------------
+  public static function fakeTypes():Array
+  {
+    return [ [WithoutInnerKeyEntity],
+             [ManyInnerKeyEntity],
+             [WithoutForeignKeyTypeEntity],
+             [ManyForeignKeysTypeEntity] ];
+  }
+
   //--------------------------------------------------------------------------
   //
   //  Variables
@@ -49,66 +64,23 @@ public class DataMapTest
 
   //--------------------------------------------------------------------------
   //
-  //  Test fake data
-  //
-  //--------------------------------------------------------------------------
-  [Test]
-  /**
-   * Тестируем тип без внутреннего ключа
-   */
-  public function testInitWithoutInnerKey():void
-  {
-    var fakeMap:DataMap = new DataMap(WithoutInnerKeyEntity);
-    assertThatInit(fakeMap, throws(DataMapError));
-  }
-
-  [Test]
-  /**
-   * Тестируем тип с нескольким внутренними ключами
-   */
-  public function testInitManyInnerKey():void
-  {
-    var fakeMap:DataMap = new DataMap(ManyInnerKeyEntity);
-    assertThatInit(fakeMap, throws(DataMapError));
-  }
-
-  [Test]
-  /**
-   * Тестируем тип без свойства <code>type</code> для внешнего ключа
-   */
-  public function testWithoutForeignKeyType():void
-  {
-    var fakeMap:DataMap = new DataMap(WithoutForeignKeyTypeEntity);
-    assertThatInit(fakeMap, throws(DataMapError));
-  }
-
-  [Test]
-  /**
-   * Тестируем тип с одинаковыми свойствами <code>type</code> для
-   * разных внешнех ключей
-   */
-  public function testManyForeignKesyType():void
-  {
-    var fakeMap:DataMap = new DataMap(ManyForeignKeysTypeEntity);
-    assertThatInit(fakeMap, throws(DataMapError));
-  }
-
-
-  //--------------------------------------------------------------------------
-  //
   //  Test methods
   //
   //--------------------------------------------------------------------------
+  [Test(dataProvider="fakeTypes")]
+  /**
+   * Тестируем тип без внутреннего ключа
+   */
+  public function testFakeTypes(type:Class):void
+  {
+    var fakeMap:DataMap = new DataMap(type);
+    assertThatInit(fakeMap, throws(DataMapError));
+  }
+
   [Test]
   public function testInit():void
   {
     assertThatInit(map, not(throws(DataMapError)));
-  }
-
-
-  [Test]
-  public function testGetForeignKeyFor():void
-  {
   }
 
 
