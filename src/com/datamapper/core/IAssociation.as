@@ -17,6 +17,6 @@ public interface IAssociation
 
   function get to():MetadataHostProperty;
 
-  function accept(watcher:IDataWatcher);
+  function accept(watcher:IDataWatcher):void;
 }
 }

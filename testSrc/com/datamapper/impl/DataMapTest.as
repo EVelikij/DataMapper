@@ -25,6 +25,11 @@ import org.hamcrest.core.anyOf;
 import org.hamcrest.core.not;
 import org.hamcrest.core.throws;
 import org.hamcrest.object.instanceOf;
+import org.hamcrest.object.notNullValue;
+import org.hamcrest.object.nullValue;
+
+import spark.components.Button;
+import spark.components.CheckBox;
 
 [RunWith("org.flexunit.runners.Parameterized")]
 public class DataMapTest
@@ -81,6 +86,19 @@ public class DataMapTest
   public function testInit():void
   {
     assertThatInit(map, not(throws(DataMapError)));
+  }
+
+  [Test]
+  public function testGetForeignKeyFor():void
+  {
+    map.init();
+
+    // get foreign key by type
+    assertThat(map.getForeignKeyFor(Button), notNullValue());
+    // get foreign key by instance
+    assertThat(map.getForeignKeyFor(new Button()), notNullValue());
+    // get foreign key for wrong type
+    assertThat(map.getForeignKeyFor(CheckBox), nullValue());
   }
 
 

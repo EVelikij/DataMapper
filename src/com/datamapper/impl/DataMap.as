@@ -10,10 +10,15 @@ package com.datamapper.impl
 import com.datamapper.core.IDataMap;
 import com.datamapper.errors.DataMapError;
 import com.datamapper.system.MetadataNames;
+import com.datamapper.system.MetadataTagArguments;
 import com.datamapper.system.reflection.DescribeType;
+import com.datamapper.system.reflection.MetadataHost;
 import com.datamapper.system.reflection.MetadataHostProperty;
 import com.datamapper.system.reflection.MetadataTag;
 import com.datamapper.system.reflection.MetadataTypeDescriptor;
+
+import flash.net.NetStreamInfo;
+import flash.utils.getQualifiedClassName;
 
 public class DataMap implements IDataMap
 {
@@ -44,6 +49,8 @@ public class DataMap implements IDataMap
    * storage for the <code>ForeignKey</code> properties
    */
   private var foreignKeys:Array = [];
+
+  private var foreignKeysTags:Array = [];
 
 
   //--------------------------------------------------------------------------
@@ -82,25 +89,25 @@ public class DataMap implements IDataMap
    */
   private function initForeignKeys():void
   {
-    foreignKeys = description.getMetadataTagsByName(MetadataNames.FOREIGN_KEY);
+    foreignKeysTags = description.getMetadataTagsByName(MetadataNames.FOREIGN_KEY);
 
+    // проверка что на один тип есть ТОЛЬКО один ключ
     var fkTypes:Array = [];
-    for each (var key:MetadataTag in foreignKeys)
+    for each (var key:MetadataTag in foreignKeysTags)
     {
       // для внешнего ключа отсутсвует тип
-      if (!key.hasArg("type"))
+      if (!key.hasArg(MetadataTagArguments.TYPE))
         throw DataMapError.foreignKeyType(key.host.name, type);
 
-      var t:String = key.getArg("type").value;
+      var t:String = key.getArg(MetadataTagArguments.TYPE).value;
 
       if (fkTypes.indexOf(t) != -1)
         throw DataMapError.manyForeignKeys(t, type);
 
+      foreignKeys.push(key.host);
       fkTypes.push(t);
     }
   }
-
-
 
 
   //--------------------------------------------------------------------------
@@ -113,8 +120,19 @@ public class DataMap implements IDataMap
     return _id;
   }
 
-  public function getForeignKeyFor(type:Class):MetadataHostProperty
+  public function getForeignKeyFor(value:*):MetadataHostProperty
   {
+    // class to string
+    var className:String = getQualifiedClassName(value).replace("::", ".");
+
+    for each (var key:MetadataTag in foreignKeysTags)
+    {
+      var foreignKeyType:String = key.getArg(MetadataTagArguments.TYPE).value;
+
+      if (foreignKeyType == className)
+        return key.host as MetadataHostProperty;
+    }
+
     return null;
   }
 

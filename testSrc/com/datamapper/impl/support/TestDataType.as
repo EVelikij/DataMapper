@@ -7,9 +7,13 @@
  */
 package com.datamapper.impl.support
 {
+
 public class TestDataType
 {
   [Id]
   public var id:String;
+
+  [ForeignKey(type="spark.components.Button")]
+  public var btnId:String;
 }
 }

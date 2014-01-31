@@ -13,7 +13,7 @@ public interface IDataMap
 {
   function get id():MetadataHostProperty;
 
-  function getForeignKeyFor(type:Class):MetadataHostProperty;
+  function getForeignKeyFor(value:*):MetadataHostProperty;
 
   function get associations():Array;
 }
