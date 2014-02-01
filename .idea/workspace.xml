@@ -2,28 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/datamapper/system/MetadataTagArguments.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/datamapper/impl/DataMap.as" afterPath="$PROJECT_DIR$/src/com/datamapper/impl/DataMap.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testSrc/com/datamapper/impl/DataMapTest.as" afterPath="$PROJECT_DIR$/testSrc/com/datamapper/impl/DataMapTest.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/datamapper/impl/BaseAssociation.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/datamapper/impl/associations/BelongsTo.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/datamapper/impl/associations/HasAndBelongsToMany.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/datamapper/impl/associations/HasMany.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/datamapper/impl/associations/HasOne.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/datamapper/core/IAssociation.as" afterPath="$PROJECT_DIR$/src/com/datamapper/core/IAssociation.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/datamapper/core/IDataMap.as" afterPath="$PROJECT_DIR$/src/com/datamapper/core/IDataMap.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/datamapper/core/IDataWatcher.as" afterPath="$PROJECT_DIR$/src/com/datamapper/core/IDataWatcher.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testSrc/com/datamapper/impl/support/TestDataType.as" afterPath="$PROJECT_DIR$/testSrc/com/datamapper/impl/support/TestDataType.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/datamapper/system/MetadataNames.as" afterPath="$PROJECT_DIR$/src/com/datamapper/system/MetadataNames.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DataMapper.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391206776375" ignored="false" />
+    <file path="/Dummy.txt" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391248521828" ignored="false" />
     <file path="$PROJECT_DIR$/../nucleus/_srclatest/src/com/ia/nucleus/system/reflection/factory/MetadataFactory.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1390047069266" ignored="false" />
     <file path="/fragment.java" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1390047329160" ignored="false" />
     <file path="/IMetadataTag.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1390047638468" ignored="false" />
     <file path="/MetadataTypeDescriptor.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1390047833451" ignored="false" />
     <file path="/IMetadataHost.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1390047852796" ignored="false" />
-    <file path="/fragment.js2" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391207170490" ignored="false" />
+    <file path="/fragment.js2" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391249488790" ignored="false" />
     <file path="/IDataMap.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391208803174" ignored="false" />
     <file path="/IAssociation.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391208152130" ignored="false" />
     <file path="/IDataWatcher.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391208185964" ignored="false" />
     <file path="/DataMap.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391209121512" ignored="false" />
-    <file path="/MetadataNames.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1390127356174" ignored="false" />
+    <file path="/MetadataNames.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391248469346" ignored="false" />
     <file path="/InnerKeyError.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1390144521638" ignored="false" />
     <file path="/DataMapError.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1390946215606" ignored="false" />
     <file path="/test.mxml" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1390515906846" ignored="false" />
@@ -38,6 +39,11 @@
     <file path="/ManyForeignKeysTypeEntity.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1390947557281" ignored="false" />
     <file path="/CoreSuite.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391031898581" ignored="false" />
     <file path="/MetadataTagKeys.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391207220001" ignored="false" />
+    <file path="/BaseAssociation.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391249083129" ignored="false" />
+    <file path="/BelongsTo.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391249203558" ignored="false" />
+    <file path="/HasOne.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391249306065" ignored="false" />
+    <file path="/HasMany.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391249383212" ignored="false" />
+    <file path="/HasAndBelongsToMany.as" changelist="e7b61a7b-c928-4bbf-a8ca-e66d667ccf89" time="1391249530928" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +59,7 @@
   </component>
   <component name="DebuggerManager">
     <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -87,7 +94,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -97,41 +103,87 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DataMap.as" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DataMap.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/DataMap.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="135" column="15" selection-start="0" selection-end="3830" vertical-scroll-proportion="0.86741215">
+            <state line="94" column="38" selection-start="2616" selection-end="2616" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#184#220#0" expanded="true" />
-                <marker date="1391209123655" expanded="true" signature="2726:2780" placeholder="..." />
-                <marker date="1391209123655" expanded="true" signature="2726:2833" placeholder="..." />
+                <marker date="1391209123655" expanded="false" signature="2726:2780" placeholder="..." />
+                <marker date="1391209123655" expanded="false" signature="2726:2833" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataMapTest.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testSrc/com/datamapper/impl/DataMapTest.as">
+      <file leaf-file-name="IAssociation.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/datamapper/core/IAssociation.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="0" selection-start="2584" selection-end="2584" vertical-scroll-proportion="0.0">
+            <state line="14" column="18" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Button.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../flex_sdks/4.10/frameworks/projects/spark/src/spark/components/Button.as">
+      <file leaf-file-name="BaseAssociation.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/BaseAssociation.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="155" column="0" selection-start="4936" selection-end="4936" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="24" column="31" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#184#224#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestDataType.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testSrc/com/datamapper/impl/support/TestDataType.as">
+      <file leaf-file-name="BelongsTo.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/associations/BelongsTo.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="1" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
+            <state line="24" column="11" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#197#237#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HasOne.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/associations/HasOne.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="28" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#197#237#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HasMany.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/associations/HasMany.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="16" selection-start="983" selection-end="983" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#197#237#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HasAndBelongsToMany.as" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/associations/HasAndBelongsToMany.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="38" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.6405694">
+              <folding>
+                <element signature="e#197#237#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IDataWatcher.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/datamapper/core/IDataWatcher.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="11" selection-start="332" selection-end="332" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -155,22 +207,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/datamapper/test.mxml" />
-        <option value="$PROJECT_DIR$/testSrc/com/datamapper/impl/support/FakeDataEntity.as" />
-        <option value="$PROJECT_DIR$/testSrc/com/datamapper/impl/support/fake/FakeManyIdEntity.as" />
-        <option value="$PROJECT_DIR$/src/com/datamapper/errors/DataMapError.as" />
-        <option value="$PROJECT_DIR$/testSrc/com/datamapper/impl/support/fake/WithoutInnerKeyEntity.as" />
-        <option value="$PROJECT_DIR$/testSrc/com/datamapper/impl/support/fake/WithoutForeignKeyTypeEntity.as" />
         <option value="$PROJECT_DIR$/src/com/datamapper/system/reflection/factory/MetadataFactory.as" />
         <option value="$PROJECT_DIR$/testSrc/com/datamapper/impl/support/fake/ManyForeignKeysTypeEntity.as" />
         <option value="$PROJECT_DIR$/testSrc/com/datamapper/impl/CoreSuite.as" />
         <option value="$PROJECT_DIR$/src/com/datamapper/system/MetadataTagKeys.as" />
-        <option value="$PROJECT_DIR$/src/com/datamapper/core/IAssociation.as" />
         <option value="$PROJECT_DIR$/src/com/datamapper/core/IDataWatcher.as" />
         <option value="$PROJECT_DIR$/testSrc/com/datamapper/impl/support/TestDataType.as" />
         <option value="$PROJECT_DIR$/src/com/datamapper/core/IDataMap.as" />
         <option value="$PROJECT_DIR$/testSrc/com/datamapper/impl/DataMapTest.as" />
         <option value="$PROJECT_DIR$/src/com/datamapper/impl/DataMap.as" />
+        <option value="$PROJECT_DIR$/src/com/datamapper/system/MetadataNames.as" />
+        <option value="$PROJECT_DIR$/src/com/datamapper/core/IAssociation.as" />
+        <option value="$PROJECT_DIR$/src/com/datamapper/impl/BaseAssociation.as" />
+        <option value="$PROJECT_DIR$/src/com/datamapper/impl/associations/BelongsTo.as" />
+        <option value="$PROJECT_DIR$/src/com/datamapper/impl/associations/HasOne.as" />
+        <option value="$PROJECT_DIR$/src/com/datamapper/impl/associations/HasMany.as" />
+        <option value="$PROJECT_DIR$/src/com/datamapper/impl/associations/HasAndBelongsToMany.as" />
       </list>
     </option>
   </component>
@@ -257,7 +309,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -333,8 +385,26 @@
               <option name="myItemId" value="datamapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
+              <option name="myItemId" value="DataMapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DataMapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="datamapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -355,6 +425,14 @@
               <option name="myItemId" value="datamapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="associations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -366,13 +444,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="datamapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -396,16 +482,16 @@
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateActionScriptClassDialog.DESTINATION_PACKAGE_RECENT_KEY">
+      <recent name="com.datamapper.impl.associations" />
+      <recent name="com.datamapper.impl" />
+      <recent name="com.datamapper.system" />
+      <recent name="com.datamapper.impl.support.fake" />
+      <recent name="com.datamapper.impl.support" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\matix\works\DataMapper\libs" />
       <recent name="D:\matix\works\DataMapper\src\com\ia\nucleus\system\reflection" />
-    </key>
-    <key name="CreateActionScriptClassDialog.DESTINATION_PACKAGE_RECENT_KEY">
-      <recent name="com.datamapper.system" />
-      <recent name="com.datamapper.impl" />
-      <recent name="com.datamapper.impl.support.fake" />
-      <recent name="com.datamapper.impl.support" />
-      <recent name="com.datamapper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\matix\works\DataMapper\testSrc\com\datamapper\impl\support\fake" />
@@ -634,7 +720,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21848226" sideWeight="0.7502877" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24971232" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24944071" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -711,69 +797,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/libs/hamcrest-as3-flex-1.1.3.swc!/library.swf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1347" column="23" selection-start="51503" selection-end="51503" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/flex/lib/FlexSupport.jar!/schemas/KnownMetaData.dtd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="283" column="2" selection-start="6514" selection-end="6514" vertical-scroll-proportion="0.3489933">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/datamapper/system/MetadataNames.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="14" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/datamapper/system/MetadataTagArguments.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="41" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/datamapper/system/reflection/MetadataTag.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="24" selection-start="2424" selection-end="2424" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/datamapper/system/reflection/MetadataHost.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="15" selection-start="175" selection-end="175" vertical-scroll-proportion="0.2644628">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/datamapper/system/reflection/MetadataHostProperty.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="53" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/datamapper/core/IAssociation.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="44" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/datamapper/core/IDataWatcher.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="40" selection-start="440" selection-end="440" vertical-scroll-proportion="0.34063262">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testSrc/com/datamapper/impl/support/fake/WithoutForeignKeyTypeEntity.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="36" selection-start="317" selection-end="317" vertical-scroll-proportion="0.36363637">
@@ -809,20 +832,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testSrc/com/datamapper/impl/DataMapTest.as">
+    <entry file="file://$PROJECT_DIR$/src/com/datamapper/system/reflection/MetadataHost.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="0" selection-start="2584" selection-end="2584" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="78" column="64" selection-start="1847" selection-end="1847" vertical-scroll-proportion="0.57507986" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/DataMap.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="15" selection-start="0" selection-end="3830" vertical-scroll-proportion="0.86741215">
+        <state line="94" column="38" selection-start="2616" selection-end="2616" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#184#220#0" expanded="true" />
-            <marker date="1391209123655" expanded="true" signature="2726:2780" placeholder="..." />
-            <marker date="1391209123655" expanded="true" signature="2726:2833" placeholder="..." />
+            <marker date="1391209123655" expanded="false" signature="2726:2780" placeholder="..." />
+            <marker date="1391209123655" expanded="false" signature="2726:2833" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/associations/BelongsTo.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="11" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#197#237#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/associations/HasOne.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="28" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#197#237#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testSrc/com/datamapper/impl/DataMapTest.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="0" selection-start="2584" selection-end="2584" vertical-scroll-proportion="0.4068802">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/datamapper/system/MetadataNames.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="48" selection-start="605" selection-end="605" vertical-scroll-proportion="0.3084223">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/datamapper/core/IDataWatcher.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="11" selection-start="332" selection-end="332" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/datamapper/core/IAssociation.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="18" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/BaseAssociation.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="31" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#184#224#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/associations/HasMany.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="16" selection-start="983" selection-end="983" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#197#237#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/datamapper/impl/associations/HasAndBelongsToMany.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="38" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.6405694">
+          <folding>
+            <element signature="e#197#237#0" expanded="true" />
           </folding>
         </state>
       </provider>

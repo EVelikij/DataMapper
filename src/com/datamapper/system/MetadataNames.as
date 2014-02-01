@@ -17,6 +17,7 @@ public class MetadataNames
   public static const ID:String = "Id";
   public static const FOREIGN_KEY:String = "ForeignKey";
   public static const BELONGS_TO:String = "BelongsTo";
+  public static const HAS_ONE:String = "HasOne";
   public static const HAS_MANY:String = "HasMany";
   public static const HAS_AND_BELONGS_TO_MANY:String = "HasAndBelongsToMany";
 }
