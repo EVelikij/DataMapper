@@ -5,7 +5,7 @@
  * Time: 11:57
  * To change this template use File | Settings | File Templates.
  */
-package com.datamapper.impl
+package com.datamapper.impl.associations
 {
 import com.datamapper.core.IAssociation;
 import com.datamapper.core.IDataWatcher;

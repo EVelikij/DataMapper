@@ -8,7 +8,7 @@
 package com.datamapper.impl.associations
 {
 import com.datamapper.core.IDataWatcher;
-import com.datamapper.impl.BaseAssociation;
+import com.datamapper.impl.associations.BaseAssociation;
 import com.datamapper.system.reflection.MetadataHostProperty;
 
 public class HasOne extends BaseAssociation
