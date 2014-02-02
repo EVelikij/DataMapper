@@ -17,6 +17,8 @@ public interface IDataMap
 
   function get associations():Array;
 
+  function get points():Array;
+
   function get repositoryType():Class;
 }
 }

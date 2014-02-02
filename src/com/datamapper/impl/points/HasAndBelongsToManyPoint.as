@@ -9,8 +9,10 @@ package com.datamapper.impl.points
 {
 import com.datamapper.errors.DataPointError;
 import com.datamapper.impl.DataMap;
+import com.datamapper.system.MetadataNames;
 import com.datamapper.system.MetadataTagArguments;
 import com.datamapper.system.reflection.IMetadataArgument;
+import com.datamapper.system.reflection.IMetadataTag;
 import com.datamapper.system.reflection.MetadataHostProperty;
 import com.datamapper.system.reflection.MetadataTag;
 
@@ -23,20 +25,10 @@ public class HasAndBelongsToManyPoint extends BaseDataPoint
   //  Constructor
   //
   //--------------------------------------------------------------------------
-  public function HasAndBelongsToManyPoint(map:DataMap, tag:MetadataTag)
+  public function HasAndBelongsToManyPoint(map:DataMap, property:MetadataHostProperty)
   {
-    this.tag = tag;
-
-    super(map, tag.host as MetadataHostProperty);
+    super(map, property);
   }
-
-
-  //--------------------------------------------------------------------------
-  //
-  //  Variables
-  //
-  //--------------------------------------------------------------------------
-  private var tag:MetadataTag;
 
 
   //--------------------------------------------------------------------------
@@ -46,6 +38,12 @@ public class HasAndBelongsToManyPoint extends BaseDataPoint
   //--------------------------------------------------------------------------
   override protected function getDestinationType():Class
   {
+    var tag:IMetadataTag = property.getMetadataTag(MetadataNames.HAS_AND_BELONGS_TO_MANY);
+
+    // check for exist HasAndBelongsToMany tag
+    if (tag == null)
+      throw DataPointError.missingMetadataTag(MetadataNames.HAS_AND_BELONGS_TO_MANY, property.name, map.repositoryType);
+
     var typeArg:IMetadataArgument = tag.getArg(MetadataTagArguments.TYPE);
 
     if (typeArg == null)

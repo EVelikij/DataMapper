@@ -24,6 +24,8 @@ public class DataPointError extends Error
   public static const NO_TYPE_ARGUMENT_TEMPLATE:String = "[{0}] attribute doesn't have " + MetadataTagArguments.TYPE
           + " argument for type {1}.";
 
+  public static const MISSING_METADATA_TEMPLATE:String = "[{0}] tag is missing in {1} property for type {2}.";
+
 
   //--------------------------------------------------------------------------
   //
@@ -33,6 +35,13 @@ public class DataPointError extends Error
   public static function noTypeForHasMany(type:Class):DataPointError
   {
     var message:String = StringUtil.substitute(NO_TYPE_ARGUMENT_TEMPLATE, MetadataNames.HAS_MANY, getQualifiedClassName(type));
+
+    return new DataPointError(message);
+  }
+
+  public static function missingMetadataTag(tagName:String, property:String, type:Class):DataPointError
+  {
+    var message:String = StringUtil.substitute(MISSING_METADATA_TEMPLATE, tagName, property, type);
 
     return new DataPointError(message);
   }

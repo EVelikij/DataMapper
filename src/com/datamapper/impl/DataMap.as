@@ -9,6 +9,10 @@ package com.datamapper.impl
 {
 import com.datamapper.core.IDataMap;
 import com.datamapper.errors.DataMapError;
+import com.datamapper.impl.points.BelongsToPoint;
+import com.datamapper.impl.points.HasAndBelongsToManyPoint;
+import com.datamapper.impl.points.HasManyPoint;
+import com.datamapper.impl.points.HasOnePoint;
 import com.datamapper.system.MetadataNames;
 import com.datamapper.system.MetadataTagArguments;
 import com.datamapper.system.reflection.DescribeType;
@@ -30,6 +34,7 @@ public class DataMap implements IDataMap
     this.type = type;
   }
 
+
   //--------------------------------------------------------------------------
   //
   //  Variables
@@ -50,6 +55,28 @@ public class DataMap implements IDataMap
 
   private var foreignKeysTags:Array = [];
 
+  private var _points:Array;
+
+  /**
+   * storage for the [HasOne] points
+   */
+  private var _hasOnePoints:Array = [];
+
+  /**
+   * storage fot the [BelongsTo] points
+   */
+  private var _belongsToPoints:Array = [];
+
+  /**
+   * storage fot the [HasMany] points
+   */
+  private var _hasManyPoints:Array = [];
+
+  /**
+   * storage fot the [HasAndBelongsToMany] points
+   */
+  private var _hasAndBelongsToManyPoints:Array = [];
+
 
   //--------------------------------------------------------------------------
   //
@@ -62,6 +89,7 @@ public class DataMap implements IDataMap
 
     initId();
     initForeignKeys();
+    initPoints();
     initAssociations();
   }
 
@@ -108,6 +136,33 @@ public class DataMap implements IDataMap
     }
   }
 
+  private function initPoints():void
+  {
+    // internal method that helps to collect points
+    var collectPoints:Function = function(pointType:String, pointFactory:Class):Array
+    {
+      var result:Array = [];
+      var tags:Array = description.getMetadataTagsByName(pointType);
+
+      for each (var tag:MetadataTag in tags)
+        result.push(new pointFactory(this, tag.host))
+
+      return result;
+    };
+
+    // step 1: collect [HasOne] points
+    _hasOnePoints = collectPoints(MetadataNames.HAS_ONE, HasOnePoint);
+
+    // step 2: collect [BelongsTo] points
+    _belongsToPoints = collectPoints(MetadataNames.BELONGS_TO, BelongsToPoint);
+
+    // step 3: collect [HasMany] points
+    _hasManyPoints = collectPoints(MetadataNames.HAS_MANY, HasManyPoint);
+
+    // step 4: collect [HasAndBelongsToMany] points
+    _hasAndBelongsToManyPoints = collectPoints(MetadataNames.HAS_AND_BELONGS_TO_MANY, HasAndBelongsToManyPoint);
+  }
+
   private function initAssociations():void
   {
     var tags:Array = description.getMetadataTagsByName(MetadataNames.BELONGS_TO);
@@ -139,9 +194,8 @@ public class DataMap implements IDataMap
     return null;
   }
 
-  public function get associations():Array
-  {
-    return null;
-  }
+  public function get associations():Array { return null; }
+
+  public function get points():Array { return _points; }
 }
 }
