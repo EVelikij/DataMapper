@@ -33,22 +33,9 @@ import org.hamcrest.object.nullValue;
 import spark.components.Button;
 import spark.components.CheckBox;
 
-[RunWith("org.flexunit.runners.Parameterized")]
+
 public class DataMapTest
 {
-  //--------------------------------------------------------------------------
-  //
-  //  Parameters
-  //
-  //--------------------------------------------------------------------------
-  public static function fakeTypes():Array
-  {
-    return [ [WithoutInnerKeyEntity],
-             [ManyInnerKeyEntity],
-             [WithoutForeignKeyTypeEntity],
-             [ManyForeignKeysTypeEntity] ];
-  }
-
   //--------------------------------------------------------------------------
   //
   //  Variables
@@ -66,6 +53,7 @@ public class DataMapTest
   public function setUp():void
   {
     map = new DataMap(TestDataType);
+    map.init();
   }
 
 
@@ -74,16 +62,6 @@ public class DataMapTest
   //  Test methods
   //
   //--------------------------------------------------------------------------
-  [Test(dataProvider="fakeTypes")]
-  /**
-   * Тестируем тип без внутреннего ключа
-   */
-  public function testFakeTypes(type:Class):void
-  {
-    var fakeMap:DataMap = new DataMap(type);
-    assertThatInit(fakeMap, throws(DataMapError));
-  }
-
   [Test]
   public function testInit():void
   {
@@ -93,8 +71,6 @@ public class DataMapTest
   [Test]
   public function testGetForeignKeyFor():void
   {
-    map.init();
-
     // get foreign key by type
     assertThat(map.getForeignKeyFor(Button), notNullValue());
     // get foreign key by instance
@@ -106,8 +82,6 @@ public class DataMapTest
   [Test]
   public function testRepositoryType():void
   {
-    map.init();
-
     assertEquals(map.repositoryType, TestDataType);
   }
 
@@ -117,7 +91,7 @@ public class DataMapTest
   //  Utils
   //
   //--------------------------------------------------------------------------
-  private function assertThatInit(map:DataMap, matcher:Matcher):void
+  public static function assertThatInit(map:DataMap, matcher:Matcher):void
   {
     assertThat(function():void { map.init(); }, matcher);
   }
