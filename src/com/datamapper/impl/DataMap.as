@@ -12,12 +12,10 @@ import com.datamapper.errors.DataMapError;
 import com.datamapper.system.MetadataNames;
 import com.datamapper.system.MetadataTagArguments;
 import com.datamapper.system.reflection.DescribeType;
-import com.datamapper.system.reflection.MetadataHost;
 import com.datamapper.system.reflection.MetadataHostProperty;
 import com.datamapper.system.reflection.MetadataTag;
 import com.datamapper.system.reflection.MetadataTypeDescriptor;
 
-import flash.net.NetStreamInfo;
 import flash.utils.getQualifiedClassName;
 
 public class DataMap implements IDataMap

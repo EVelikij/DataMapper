@@ -9,8 +9,6 @@ package com.datamapper.errors
 {
 import avmplus.getQualifiedClassName;
 
-import flash.net.NetStreamInfo;
-
 import mx.utils.StringUtil;
 
 public class DataMapError extends Error

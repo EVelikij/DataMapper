@@ -2,17 +2,17 @@ package com.datamapper.system.reflection.factory
 {
 import com.datamapper.system.MetadataNames;
 import com.datamapper.system.reflection.IMetadataHost;
-  import com.datamapper.system.reflection.IMetadataTag;
-  import com.datamapper.system.reflection.MetadataArgument;
-  import com.datamapper.system.reflection.MetadataHostClass;
-  import com.datamapper.system.reflection.MetadataHostMethod;
-  import com.datamapper.system.reflection.MetadataHostProperty;
-  import com.datamapper.system.reflection.MetadataTag;
-  import com.datamapper.system.reflection.MethodParameter;
-  
-  import flash.utils.getDefinitionByName;
+import com.datamapper.system.reflection.IMetadataTag;
+import com.datamapper.system.reflection.MetadataArgument;
+import com.datamapper.system.reflection.MetadataHostClass;
+import com.datamapper.system.reflection.MetadataHostMethod;
+import com.datamapper.system.reflection.MetadataHostProperty;
+import com.datamapper.system.reflection.MetadataTag;
+import com.datamapper.system.reflection.MethodParameter;
 
-  /**
+import flash.utils.getDefinitionByName;
+
+/**
    * Фабрика для создания reflection-объектов 
    * @author Evgenij Welikij
    * 

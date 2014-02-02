@@ -7,10 +7,6 @@
  */
 package com.datamapper.system
 {
-import com.datamapper.impl.associations.BelongsTo;
-import com.datamapper.system.reflection.MetadataTag;
-import com.datamapper.system.reflection.MetadataTypeDescriptor;
-
 public class DataMapUtil
 {
   //--------------------------------------------------------------------------

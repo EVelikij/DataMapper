@@ -7,8 +7,6 @@
  */
 package com.datamapper.core
 {
-import com.datamapper.system.reflection.MetadataHostProperty;
-
 public interface IAssociation
 {
   function get source():IDataPoint;

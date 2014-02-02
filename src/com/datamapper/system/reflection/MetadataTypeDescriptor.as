@@ -2,11 +2,11 @@ package com.datamapper.system.reflection
 {
 
 import com.datamapper.system.reflection.factory.MetadataFactory;
-  
-  import flash.utils.Dictionary;
-  import flash.utils.getDefinitionByName;
 
-  /**
+import flash.utils.Dictionary;
+import flash.utils.getDefinitionByName;
+
+/**
    * Класс объектного представляет матаданных
    * @author Evgenij Welikij
    * 

@@ -1,10 +1,10 @@
 package com.datamapper.system.reflection
 {
-  import flash.utils.Dictionary;
-  import flash.utils.describeType;
-  import flash.utils.getQualifiedClassName;
+import flash.utils.Dictionary;
+import flash.utils.describeType;
+import flash.utils.getQualifiedClassName;
 
-  /**
+/**
    * Статический интерфейс для метода <code>describeType</code>
    * 
    * @author Evgenij Welikij
