@@ -16,5 +16,7 @@ public interface IDataMap
   function getForeignKeyFor(value:*):MetadataHostProperty;
 
   function get associations():Array;
+
+  function get repositoryType():Class;
 }
 }

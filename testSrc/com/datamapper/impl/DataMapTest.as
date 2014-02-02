@@ -17,6 +17,8 @@ import com.datamapper.impl.support.fake.WithoutInnerKeyEntity;
 import com.datamapper.impl.support.TestDataType;
 import com.datamapper.impl.support.fake.ManyInnerKeyEntity;
 
+import org.flexunit.asserts.assertEquals;
+
 import org.hamcrest.Matcher;
 
 import org.hamcrest.assertThat;
@@ -99,6 +101,14 @@ public class DataMapTest
     assertThat(map.getForeignKeyFor(new Button()), notNullValue());
     // get foreign key for wrong type
     assertThat(map.getForeignKeyFor(CheckBox), nullValue());
+  }
+
+  [Test]
+  public function testRepositoryType():void
+  {
+    map.init();
+
+    assertEquals(map.repositoryType, TestDataType);
   }
 
 

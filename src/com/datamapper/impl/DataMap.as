@@ -64,6 +64,7 @@ public class DataMap implements IDataMap
 
     initId();
     initForeignKeys();
+    initAssociations();
   }
 
   /**
@@ -109,16 +110,20 @@ public class DataMap implements IDataMap
     }
   }
 
+  private function initAssociations():void
+  {
+    var tags:Array = description.getMetadataTagsByName(MetadataNames.BELONGS_TO);
+  }
+
 
   //--------------------------------------------------------------------------
   //
   //  IDataMap implementation
   //
   //--------------------------------------------------------------------------
-  public function get id():MetadataHostProperty
-  {
-    return _id;
-  }
+  public function get id():MetadataHostProperty { return _id; }
+
+  public function get repositoryType():Class { return type; }
 
   public function getForeignKeyFor(value:*):MetadataHostProperty
   {
