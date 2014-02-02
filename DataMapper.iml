@@ -11,13 +11,13 @@
             <entry library-id="a0b3cd24-733c-4513-97eb-577066701394">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="37a49d15-62f4-470b-858c-5da74f486c56">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-id="bc19afe6-b218-4ac5-8359-42e7c5397936">
               <dependency linkage="Merged" />
             </entry>
             <entry library-id="4806649f-39c7-4973-b09d-f7b2e768b5b9">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="b6fe01b8-2bcc-4d5c-a7cd-629f0d408d6e">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -61,16 +61,6 @@
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="37a49d15-62f4-470b-858c-5da74f486c56" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/mockolate-0.12.4-flex.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
         <properties id="bc19afe6-b218-4ac5-8359-42e7c5397936" />
         <CLASSES>
           <root url="jar://$MODULE_DIR$/libs/flexunit-cilistener-4.1.0-8-4.1.0.16076.swc!/" />
@@ -84,6 +74,16 @@
         <properties id="4806649f-39c7-4973-b09d-f7b2e768b5b9" />
         <CLASSES>
           <root url="jar://$MODULE_DIR$/libs/flexunit-4.1.0-8-flex_4.1.0.16076.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="b6fe01b8-2bcc-4d5c-a7cd-629f0d408d6e" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/mockolate-0.12.4-flex.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

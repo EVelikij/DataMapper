@@ -7,32 +7,19 @@
  */
 package com.datamapper.impl
 {
-import avmplus.INCLUDE_BASES;
-import avmplus.getQualifiedClassName;
-
 import com.datamapper.errors.DataMapError;
-import com.datamapper.impl.support.fake.ManyForeignKeysTypeEntity;
-import com.datamapper.impl.support.fake.WithoutForeignKeyTypeEntity;
-import com.datamapper.impl.support.fake.WithoutInnerKeyEntity;
 import com.datamapper.impl.support.TestDataType;
-import com.datamapper.impl.support.fake.ManyInnerKeyEntity;
 
 import org.flexunit.asserts.assertEquals;
-
 import org.hamcrest.Matcher;
-
 import org.hamcrest.assertThat;
-import org.hamcrest.core.allOf;
-import org.hamcrest.core.anyOf;
 import org.hamcrest.core.not;
 import org.hamcrest.core.throws;
-import org.hamcrest.object.instanceOf;
 import org.hamcrest.object.notNullValue;
 import org.hamcrest.object.nullValue;
 
 import spark.components.Button;
 import spark.components.CheckBox;
-
 
 public class DataMapTest
 {

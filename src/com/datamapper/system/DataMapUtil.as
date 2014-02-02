@@ -14,10 +14,6 @@ public class DataMapUtil
   //  Class methods
   //
   //--------------------------------------------------------------------------
-  public function test():void
-  {
-    trace("Hello world");
-  }
 
 }
 }
