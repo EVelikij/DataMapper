@@ -11,9 +11,9 @@ import com.datamapper.system.reflection.MetadataHostProperty;
 
 public interface IAssociation
 {
-  function get source():MetadataHostProperty;
+  function get source():IDataPoint;
 
-  function get destination():MetadataHostProperty;
+  function get destination():IDataPoint;
 
   function accept(watcher:IDataWatcher):void;
 }
