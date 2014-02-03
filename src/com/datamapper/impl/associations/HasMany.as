@@ -9,8 +9,7 @@ package com.datamapper.impl.associations
 {
 import com.datamapper.core.IDataPoint;
 import com.datamapper.core.IDataWatcher;
-import com.datamapper.impl.associations.BaseAssociation;
-import com.datamapper.system.reflection.MetadataHostProperty;
+import com.datamapper.core.IRepository;
 
 public class HasMany extends BaseAssociation
 {
@@ -19,7 +18,7 @@ public class HasMany extends BaseAssociation
   //  Constructor
   //
   //--------------------------------------------------------------------------
-  public function HasMany(source:IDataPoint, destination:IDataPoint)
+  public function HasMany(source:IDataPoint, destination:IRepository)
   {
     super(source, destination);
   }

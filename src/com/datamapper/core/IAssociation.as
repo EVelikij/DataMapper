@@ -11,7 +11,7 @@ public interface IAssociation
 {
   function get source():IDataPoint;
 
-  function get destination():IDataPoint;
+  function get destination():IRepository;
 
   function accept(watcher:IDataWatcher):void;
 }

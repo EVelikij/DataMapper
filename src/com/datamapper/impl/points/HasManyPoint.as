@@ -14,11 +14,8 @@ import com.datamapper.system.MetadataTagArguments;
 import com.datamapper.system.reflection.IMetadataArgument;
 import com.datamapper.system.reflection.IMetadataTag;
 import com.datamapper.system.reflection.MetadataHostProperty;
-import com.datamapper.system.reflection.MetadataTag;
 
 import flash.utils.getDefinitionByName;
-
-import flex.lang.reflect.metadata.MetaDataArgument;
 
 public class HasManyPoint extends BaseDataPoint
 {

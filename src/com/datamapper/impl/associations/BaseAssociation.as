@@ -10,7 +10,7 @@ package com.datamapper.impl.associations
 import com.datamapper.core.IAssociation;
 import com.datamapper.core.IDataPoint;
 import com.datamapper.core.IDataWatcher;
-import com.datamapper.system.reflection.MetadataHostProperty;
+import com.datamapper.core.IRepository;
 
 public class BaseAssociation implements IAssociation
 {
@@ -19,8 +19,7 @@ public class BaseAssociation implements IAssociation
   //  Constructor
   //
   //--------------------------------------------------------------------------
-  public function BaseAssociation(source:IDataPoint,
-                                  destination:IDataPoint)
+  public function BaseAssociation(source:IDataPoint, destination:IRepository)
   {
     _source = source;
     _destination = destination;
@@ -33,7 +32,7 @@ public class BaseAssociation implements IAssociation
   //
   //--------------------------------------------------------------------------
   private var _source:IDataPoint;
-  private var _destination:IDataPoint;
+  private var _destination:IRepository;
 
 
   //--------------------------------------------------------------------------
@@ -43,7 +42,7 @@ public class BaseAssociation implements IAssociation
   //--------------------------------------------------------------------------
   public function get source():IDataPoint { return _source; }
 
-  public function get destination():IDataPoint { return _destination; }
+  public function get destination():IRepository { return _destination; }
 
   public function accept(watcher:IDataWatcher):void
   {

@@ -8,7 +8,9 @@
 package com.datamapper.impl
 {
 import com.datamapper.core.IDataMap;
+import com.datamapper.core.IDataPoint;
 import com.datamapper.errors.DataMapError;
+import com.datamapper.impl.associations.HasOne;
 import com.datamapper.impl.points.BelongsToPoint;
 import com.datamapper.impl.points.HasAndBelongsToManyPoint;
 import com.datamapper.impl.points.HasManyPoint;
@@ -55,7 +57,9 @@ public class DataMap implements IDataMap
 
   private var foreignKeysTags:Array = [];
 
-  private var _points:Array;
+  private var _associations:Array = [];
+
+  private var _points:Array = [];
 
   /**
    * storage for the [HasOne] points
@@ -165,7 +169,6 @@ public class DataMap implements IDataMap
 
   private function initAssociations():void
   {
-    var tags:Array = description.getMetadataTagsByName(MetadataNames.BELONGS_TO);
   }
 
 
