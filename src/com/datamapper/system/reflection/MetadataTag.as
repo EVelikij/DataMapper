@@ -82,7 +82,7 @@ package com.datamapper.system.reflection
       _name = value;
     }
     
-    [ArrayElementType("com.ia.mobile.core.common.reflection.IMetadataArgument")]
+    [ArrayElementType("com.datamapper.system.reflection.IMetadataArgument")]
     public function get args():Array
     {
       return _args;
