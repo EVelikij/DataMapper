@@ -7,9 +7,11 @@
  */
 package com.datamapper.core
 {
+import flash.events.IEventDispatcher;
+
 import mx.collections.ArrayCollection;
 
-public interface IRepository
+public interface IRepository extends IEventDispatcher
 {
   /**
    * collection of all items
