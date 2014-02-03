@@ -20,12 +20,9 @@ public class BasePointTest extends BaseMockTest
   //  Constructor
   //
   //--------------------------------------------------------------------------
-  public function BasePointTest(...rest)
+  public function BasePointTest()
   {
-    if (rest.length == 0 || (rest.length == 1 && rest[0] == null))
-      rest = [ [DataMap, DataMap], [MetadataHostProperty, MetadataHostProperty] ];
-
-    super(rest);
+    super([ [DataMap, DataMap], [MetadataHostProperty, MetadataHostProperty] ]);
   }
 
 

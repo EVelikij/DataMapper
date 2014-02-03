@@ -1,25 +1,34 @@
 /**
  * Created with IntelliJ IDEA.
  * User: evgenii
- * Date: 02.02.14
- * Time: 21:59
+ * Date: 03.02.14
+ * Time: 23:19
  * To change this template use File | Settings | File Templates.
  */
 package com.datamapper.impl.points
 {
-
+import com.datamapper.errors.DataPointError;
 import com.datamapper.impl.DataMap;
 import com.datamapper.impl.support.TestDataType;
+import com.datamapper.system.MetadataTagArguments;
+import com.datamapper.system.reflection.IMetadataTag;
+import com.datamapper.system.reflection.MetadataArgument;
+import com.datamapper.system.reflection.MetadataTag;
+
+import flash.geom.Point;
 
 import mockolate.nice;
 import mockolate.stub;
 
 import org.hamcrest.assertThat;
+import org.hamcrest.core.throws;
 
 import org.hamcrest.object.equalTo;
 
+import spark.components.Button;
+
 [RunWith("mockolate.runner.MockolateRunner")]
-public class HasOneTest extends BasePointTest
+public class HasManyPointTest extends BasePointTest
 {
   //--------------------------------------------------------------------------
   //
@@ -33,13 +42,16 @@ public class HasOneTest extends BasePointTest
 
   override protected function initProperty():void
   {
-    stub(property).getter("type").returns(type);
+    hasManyTag = new MetadataTag();
+    hasManyTag.args = [new MetadataArgument(MetadataTagArguments.TYPE, "spark.components.Button")];
+
+    stub(property).method("getMetadataTag").returns(hasManyTag);
   }
 
   [Before(order=2, async)]
   public function setUp():void
   {
-    point = new HasOnePoint(map, property)
+    point = new HasManyPoint(map, property)
   }
 
   [After]
@@ -47,7 +59,6 @@ public class HasOneTest extends BasePointTest
   {
     point = null;
   }
-
 
   //--------------------------------------------------------------------------
   //
@@ -57,8 +68,17 @@ public class HasOneTest extends BasePointTest
   [Test]
   public function testGetDestinationType():void
   {
-    assertThat("For HasOnePoint getters sourceType and destinationType must return the same value",
-            point.sourceType, equalTo(point.destinationType));
+    assertThat("For HasManyPoint getters destinationType must return spark.components.Button",
+            point.destinationType, equalTo(Button));
+  }
+
+  [Test]
+  public function testGetDestinationTypeWithoutTypeArgument():void
+  {
+    hasManyTag.args = [];
+
+    assertThat("Type argument for HasManyPoint must be specified.",
+            function():void { new HasManyPoint(map, property); }, throws(DataPointError));
   }
 
 
@@ -67,7 +87,8 @@ public class HasOneTest extends BasePointTest
   //  Variables
   //
   //--------------------------------------------------------------------------
-  private var point:HasOnePoint;
+  private var point:HasManyPoint;
+  private var hasManyTag:IMetadataTag;
   private var type:Class = TestDataType;
 }
 }
