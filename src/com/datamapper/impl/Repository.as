@@ -9,6 +9,7 @@ package com.datamapper.impl
 {
 import com.datamapper.core.IDataMap;
 import com.datamapper.core.IRepository;
+import com.datamapper.errors.RepositoryError;
 
 import flash.events.EventDispatcher;
 
@@ -21,11 +22,15 @@ public class Repository extends EventDispatcher implements IRepository
   //  Constructor
   //
   //--------------------------------------------------------------------------
-  public function Repository(source:ArrayCollection)
+  public function Repository(source:ArrayCollection, type:Class, ds:DataSource)
   {
     super();
 
     this._source = source;
+    this._type = type;
+    this._ds = ds;
+
+    _map = new DataMap(type, ds);
   }
 
 
@@ -35,7 +40,10 @@ public class Repository extends EventDispatcher implements IRepository
   //
   //--------------------------------------------------------------------------
   private var _source:ArrayCollection;
+  private var _type:Class;
+  private var _ds:DataSource;
 
+  private var _map:IDataMap;
 
 
   //--------------------------------------------------------------------------
@@ -45,24 +53,30 @@ public class Repository extends EventDispatcher implements IRepository
   //--------------------------------------------------------------------------
   public function get source():ArrayCollection { return _source; }
 
-  public function get map():IDataMap
-  {
-    return null;
-  }
+  public function get map():IDataMap { return _map; }
 
-  public function get type():Class
-  {
-    return null;
-  }
+  public function get type():Class { return _type; }
 
   public function getItemById(id:*):*
   {
+    var innerKeyName:String = map.id.name;
+
+    // loop by each item in repository and check on inner key property exist
+    for each (var item:* in _source)
+    {
+      if (item.hasOwnProperty(innerKeyName) && item[innerKeyName] == id)
+        return item;
+    }
+
     return null;
   }
 
   public function getInnerKeyValue(entity:*):*
   {
-    return null;
+    if (entity.constructor != type)
+      throw RepositoryError.wrongEntityType(entity, type);
+
+    return entity[map.id.name];
   }
 }
 }

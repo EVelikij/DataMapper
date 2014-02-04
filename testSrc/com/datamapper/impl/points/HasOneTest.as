@@ -9,6 +9,7 @@ package com.datamapper.impl.points
 {
 
 import com.datamapper.impl.DataMap;
+import com.datamapper.impl.DataSource;
 import com.datamapper.impl.support.TestDataType;
 
 import mockolate.nice;
@@ -28,7 +29,7 @@ public class HasOneTest extends BasePointTest
   //--------------------------------------------------------------------------
   override protected function initMap():DataMap
   {
-    return nice(DataMap, "name", [type]);
+    return nice(DataMap, "name", [type, new DataSource()]);
   }
 
   override protected function initProperty():void

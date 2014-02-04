@@ -7,7 +7,8 @@
  */
 package com.datamapper.errors
 {
-import avmplus.getQualifiedClassName;
+
+import flash.utils.getQualifiedClassName;
 
 import mx.utils.StringUtil;
 
@@ -19,6 +20,7 @@ public class RepositoryError extends Error
   //
   //--------------------------------------------------------------------------
   public static const REPOSITORY_EXIT_TEMPLATE:String = "Repository for type {0} already exist in the DataSource.";
+  public static const ENTITY_TYPE_TEMPLATE:String = "Item of {0} type could no exist in repository for type {1}.";
 
 
   //--------------------------------------------------------------------------
@@ -29,6 +31,13 @@ public class RepositoryError extends Error
   public static function repositoryExist(type:Class):RepositoryError
   {
     var msg:String = StringUtil.substitute(REPOSITORY_EXIT_TEMPLATE, getQualifiedClassName(type));
+
+    return new RepositoryError(msg);
+  }
+
+  public static function wrongEntityType(entity:*, repositoryType:Class):RepositoryError
+  {
+    var msg:String = StringUtil.substitute(ENTITY_TYPE_TEMPLATE, getQualifiedClassName(entity), getQualifiedClassName(repositoryType));
 
     return new RepositoryError(msg);
   }

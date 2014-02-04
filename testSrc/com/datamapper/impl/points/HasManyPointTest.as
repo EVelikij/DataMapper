@@ -9,6 +9,7 @@ package com.datamapper.impl.points
 {
 import com.datamapper.errors.DataPointError;
 import com.datamapper.impl.DataMap;
+import com.datamapper.impl.DataSource;
 import com.datamapper.impl.support.TestDataType;
 import com.datamapper.system.MetadataTagArguments;
 import com.datamapper.system.reflection.IMetadataTag;
@@ -37,7 +38,7 @@ public class HasManyPointTest extends BasePointTest
   //--------------------------------------------------------------------------
   override protected function initMap():DataMap
   {
-    return nice(DataMap, "name", [type]);
+    return nice(DataMap, "name", [type, new DataSource()]);
   }
 
   override protected function initProperty():void

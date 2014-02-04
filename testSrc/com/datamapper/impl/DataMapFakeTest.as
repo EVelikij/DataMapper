@@ -50,7 +50,7 @@ public class DataMapFakeTest
    */
   public function testFakeTypes(type:Class):void
   {
-    var fakeMap:DataMap = new DataMap(type);
+    var fakeMap:DataMap = new DataMap(type, new DataSource());
     DataMapTest.assertThatInit(fakeMap, throws(DataMapError));
   }
 }

@@ -47,7 +47,7 @@ public class DataSource extends EventDispatcher implements IDataSource
   {
     if (repositoryTypeMap[type] == undefined)
     {
-      var rep:IRepository = new Repository(col);
+      var rep:IRepository = new Repository(col, type, this);
 
       repositories.push(rep);
       repositoryTypeMap[type] = rep;

@@ -39,7 +39,7 @@ public class DataMapTest
   [Before]
   public function setUp():void
   {
-    map = new DataMap(TestDataType);
+    map = new DataMap(TestDataType, new DataSource());
     map.init();
   }
 

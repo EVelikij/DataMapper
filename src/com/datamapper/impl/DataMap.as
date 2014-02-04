@@ -9,7 +9,12 @@ package com.datamapper.impl
 {
 import com.datamapper.core.IDataMap;
 import com.datamapper.core.IDataPoint;
+import com.datamapper.core.IDataSource;
+import com.datamapper.core.IRepository;
 import com.datamapper.errors.DataMapError;
+import com.datamapper.impl.associations.BelongsTo;
+import com.datamapper.impl.associations.HasAndBelongsToMany;
+import com.datamapper.impl.associations.HasMany;
 import com.datamapper.impl.associations.HasOne;
 import com.datamapper.impl.points.BelongsToPoint;
 import com.datamapper.impl.points.HasAndBelongsToManyPoint;
@@ -31,9 +36,10 @@ public class DataMap implements IDataMap
   //  Constructor
   //
   //--------------------------------------------------------------------------
-  public function DataMap(type:Class)
+  public function DataMap(type:Class, ds:IDataSource)
   {
     this.type = type;
+    this.ds = ds;
   }
 
 
@@ -43,6 +49,8 @@ public class DataMap implements IDataMap
   //
   //--------------------------------------------------------------------------
   private var type:Class;
+  private var ds:IDataSource
+
   private var description:MetadataTypeDescriptor;
 
   /**
@@ -169,6 +177,33 @@ public class DataMap implements IDataMap
 
   private function initAssociations():void
   {
+    // internal method that allows create associations
+    var collectAssociations:Function = function(points:Array, associationFactory:Class):Array
+    {
+      var result:Array = [];
+
+      for each (var pt:IDataPoint in _hasOnePoints)
+      {
+        var rep:IRepository = ds.getRepositoryFor(pt.destinationType);
+        result.push(new associationFactory(pt, rep))
+      }
+
+      return result;
+    };
+
+    _associations = [];
+
+    // step 1: creates HasOne associations
+    _associations = collectAssociations(_hasOnePoints, HasOne);
+
+    // step 2: creates BelongsTo associations
+    _associations = _associations.concat(collectAssociations(_belongsToPoints, BelongsTo));
+
+    // step 3: creates HasMany associations
+    _associations = _associations.concat(collectAssociations(_hasManyPoints, HasMany));
+
+    // step 4: creates HasAndBelongsToMany associations
+    _associations = _associations.concat(collectAssociations(_hasAndBelongsToManyPoints, HasAndBelongsToMany));
   }
 
 
