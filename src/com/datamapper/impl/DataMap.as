@@ -44,6 +44,7 @@ public class DataMap implements IDataMap
     this.ds = ds;
 
     ds.addEventListener(RepositoryEvent.ADDED, ds_repositoryAddedHandler);
+    ds.addEventListener(RepositoryEvent.REMOVED, ds_repositoryRemovedHandler);
   }
 
 
@@ -245,6 +246,34 @@ public class DataMap implements IDataMap
     }
   }
 
+  protected function ds_repositoryRemovedHandler(event:RepositoryEvent):void
+  {
+    var i:int = 0;
+
+    // remove associations that belongs to removed repository
+    while (i < _associations.length)
+    {
+      var assoc:IAssociation = _associations[i];
+
+      if (assoc.destination == event.repository)
+        _associations.splice(i,  1);
+      else
+        i++;
+    }
+
+    // remove pending associations
+    i = 0;
+    while (i < pendingAssociations.length)
+    {
+      var pending:PendingAssociation = pendingAssociations[i];
+
+      if (pending.destinationType == event.repository.type)
+        pendingAssociations.splice(i, 1);
+      else
+        i++;
+    }
+  }
+
 
   //--------------------------------------------------------------------------
   //
@@ -303,6 +332,14 @@ class PendingAssociation
   //--------------------------------------------------------------------------
   private var point:IDataPoint;
   private var factory:Class;
+
+
+  //--------------------------------------------------------------------------
+  //
+  //  Properties
+  //
+  //--------------------------------------------------------------------------
+  public function get destinationType():Class { return point.destinationType; }
 
 
   //--------------------------------------------------------------------------

@@ -30,6 +30,9 @@ public class DataMapAssociationsTest
   private var students:ArrayCollection;
   private var groups:ArrayCollection;
 
+  private var studentsRepository:IRepository;
+  private var groupsRepository:IRepository;
+
 
   //--------------------------------------------------------------------------
   //
@@ -42,6 +45,9 @@ public class DataMapAssociationsTest
     ds = new DataSource();
     students = new ArrayCollection();
     groups = new ArrayCollection();
+
+    studentsRepository = ds.addRepository(students, StudentDTO);
+    groupsRepository = ds.addRepository(groups, GroupDTO);
   }
 
   [After]
@@ -61,15 +67,22 @@ public class DataMapAssociationsTest
   [Test]
   public function lazyInitializationTest():void
   {
-    var studentsRepository:IRepository = ds.addRepository(students, StudentDTO);
-    var groupsRepository:IRepository = ds.addRepository(groups, GroupDTO);
-
     var studentMap:IDataMap = studentsRepository.map;
     var groupMap:IDataMap = groupsRepository.map;
 
     assertThat(studentMap.associations, arrayWithSize(1));
     assertThat(groupMap.associations, arrayWithSize(1));
   }
+
+  [Test]
+  public function removeRepositoryTest():void
+  {
+    ds.removeRepository(StudentDTO);
+
+    assertThat(groupsRepository.map.associations, arrayWithSize(0));
+  }
+
+
 
 
 }
