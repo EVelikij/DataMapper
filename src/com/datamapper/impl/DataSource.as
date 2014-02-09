@@ -10,12 +10,16 @@ package com.datamapper.impl
 import com.datamapper.core.IDataSource;
 import com.datamapper.core.IRepository;
 import com.datamapper.errors.RepositoryError;
+import com.datamapper.events.RepositoryEvent;
 
 import flash.events.EventDispatcher;
 import flash.utils.Dictionary;
 
 import mx.collections.ArrayCollection;
 
+[Event(name="added", type="com.datamapper.events.RepositoryEvent")]
+
+[Event(name="removed", type="com.datamapper.events.RepositoryEvent")]
 public class DataSource extends EventDispatcher implements IDataSource
 {
   //--------------------------------------------------------------------------
@@ -51,6 +55,9 @@ public class DataSource extends EventDispatcher implements IDataSource
 
       repositories.push(rep);
       repositoryTypeMap[type] = rep;
+
+      // now we can dispatch ADDED event
+      dispatchEvent(new RepositoryEvent(RepositoryEvent.ADDED, rep));
     }
     else
       throw RepositoryError.repositoryExist(type);
@@ -64,13 +71,20 @@ public class DataSource extends EventDispatcher implements IDataSource
     {
       repositories.splice(repositories.indexOf(rep), 1);
       delete repositoryTypeMap[type];
+
+      // now we can dispatch REMOVED event
+      dispatchEvent(new RepositoryEvent(RepositoryEvent.REMOVED, rep));
     }
   }
 
   public function removeAllRepositories():void
   {
-    repositories = [];
-    repositoryTypeMap = new Dictionary();
+    while (repositories.length)
+    {
+      var rep:IRepository = repositories[0];
+
+      removeRepository(rep.type);
+    }
   }
 
   public function getRepositoryFor(entityOrClass:*):IRepository

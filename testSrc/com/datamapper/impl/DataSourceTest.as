@@ -8,6 +8,7 @@
 package com.datamapper.impl
 {
 import com.datamapper.errors.RepositoryError;
+import com.datamapper.events.RepositoryEvent;
 
 import mx.collections.ArrayCollection;
 
@@ -84,19 +85,28 @@ public class DataSourceTest
   [Test]
   public function testRemoveAllRepositories():void
   {
-    // remove repository
-    ds.removeRepository(Button);
-    assertThat("DataSource doesn't remove repository.", ds.length, equalTo(1));
+    var counter:int = 0;
 
-    assertFalse("After remove repository getRepositoryFor method still return repository.", ds.hasRepositoryFor(Button));
+    ds.addEventListener(RepositoryEvent.REMOVED, function(event:RepositoryEvent):void
+    {
+      counter++;
+    });
+
+    ds.removeAllRepositories();
+
+    assertThat("DataSource doesn't dispatch RepositoryEvent.REMOVED event when call removeAllRepositories()",
+            counter, equalTo(2));
+    assertThat("DataSource doesn't remove repository.", ds.length, equalTo(0));
   }
 
   [Test]
   public function testRemoveRepository():void
   {
-    ds.removeAllRepositories();
+    // remove repository
+    ds.removeRepository(Button);
 
-    assertThat("DataSource doesn't remove repository.", ds.length, equalTo(0));
+    assertThat("DataSource doesn't remove repository.", ds.length, equalTo(1));
+    assertFalse("After remove repository getRepositoryFor method still return repository.", ds.hasRepositoryFor(Button));
   }
 
   [Test]
@@ -109,6 +119,35 @@ public class DataSourceTest
     // test by type
     assertThat("Data source doesn't return repository for registered type by type.",
             ds.getRepositoryFor(Button), notNullValue());
+  }
+
+  [Test]
+  public function testAddRemoveEvents():void
+  {
+    var ds:DataSource = new DataSource();
+    var counter:int = 0;
+
+    ds.addEventListener(RepositoryEvent.ADDED, function(event:RepositoryEvent):void
+    {
+       counter++;
+    });
+
+    ds.addEventListener(RepositoryEvent.REMOVED, function(event:RepositoryEvent):void
+    {
+       counter--;
+    });
+
+
+    // register two new repositories
+    ds.addRepository(new ArrayCollection(), Button);
+    ds.addRepository(new ArrayCollection(), Label);
+
+    assertThat(counter, equalTo(2));
+
+    ds.removeRepository(Button);
+    ds.removeRepository(Label);
+
+    assertThat(counter, equalTo(0));
   }
 }
 }
