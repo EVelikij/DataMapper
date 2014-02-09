@@ -31,6 +31,7 @@ public class Repository extends EventDispatcher implements IRepository
     this._ds = ds;
 
     _map = new DataMap(type, ds);
+    _map.init();
   }
 
 
@@ -43,7 +44,7 @@ public class Repository extends EventDispatcher implements IRepository
   private var _type:Class;
   private var _ds:DataSource;
 
-  private var _map:IDataMap;
+  private var _map:DataMap;
 
 
   //--------------------------------------------------------------------------

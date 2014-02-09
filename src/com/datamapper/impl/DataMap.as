@@ -7,11 +7,13 @@
  */
 package com.datamapper.impl
 {
+import com.datamapper.core.IAssociation;
 import com.datamapper.core.IDataMap;
 import com.datamapper.core.IDataPoint;
 import com.datamapper.core.IDataSource;
 import com.datamapper.core.IRepository;
 import com.datamapper.errors.DataMapError;
+import com.datamapper.events.RepositoryEvent;
 import com.datamapper.impl.associations.BelongsTo;
 import com.datamapper.impl.associations.HasAndBelongsToMany;
 import com.datamapper.impl.associations.HasMany;
@@ -40,6 +42,8 @@ public class DataMap implements IDataMap
   {
     this.type = type;
     this.ds = ds;
+
+    ds.addEventListener(RepositoryEvent.ADDED, ds_repositoryAddedHandler);
   }
 
 
@@ -66,6 +70,11 @@ public class DataMap implements IDataMap
   private var foreignKeysTags:Array = [];
 
   private var _associations:Array = [];
+
+  /**
+   * Коллекция объектов PendingAssociation
+   */
+  private var pendingAssociations:Array = [];
 
   private var _points:Array = [];
 
@@ -150,6 +159,7 @@ public class DataMap implements IDataMap
 
   private function initPoints():void
   {
+    var self:DataMap = this;
     // internal method that helps to collect points
     var collectPoints:Function = function(pointType:String, pointFactory:Class):Array
     {
@@ -157,7 +167,7 @@ public class DataMap implements IDataMap
       var tags:Array = description.getMetadataTagsByName(pointType);
 
       for each (var tag:MetadataTag in tags)
-        result.push(new pointFactory(this, tag.host))
+        result.push(new pointFactory(self, tag.host))
 
       return result;
     };
@@ -177,15 +187,20 @@ public class DataMap implements IDataMap
 
   private function initAssociations():void
   {
+    var self:DataMap = this;
     // internal method that allows create associations
     var collectAssociations:Function = function(points:Array, associationFactory:Class):Array
     {
       var result:Array = [];
 
-      for each (var pt:IDataPoint in _hasOnePoints)
+      for each (var pt:IDataPoint in points)
       {
         var rep:IRepository = ds.getRepositoryFor(pt.destinationType);
-        result.push(new associationFactory(pt, rep))
+
+        if (rep)
+          result.push(new associationFactory(pt, rep));
+        else
+          self.pendingAssociations.push(new PendingAssociation(pt, associationFactory));
       }
 
       return result;
@@ -204,6 +219,30 @@ public class DataMap implements IDataMap
 
     // step 4: creates HasAndBelongsToMany associations
     _associations = _associations.concat(collectAssociations(_hasAndBelongsToManyPoints, HasAndBelongsToMany));
+  }
+
+  //--------------------------------------------------------------------------
+  //
+  //  Events handlers
+  //
+  //--------------------------------------------------------------------------
+  protected function ds_repositoryAddedHandler(event:RepositoryEvent):void
+  {
+    var i:int = 0;
+
+    while (i < pendingAssociations.length)
+    {
+      var pending:PendingAssociation = pendingAssociations[i];
+      var association:IAssociation = pending.repositoryAdded(ds, event.repository);
+
+      if (association)
+      {
+        _associations.push(association);
+        pendingAssociations.splice(i, 1);
+      }
+      else
+        i++;
+    }
   }
 
 
@@ -232,8 +271,50 @@ public class DataMap implements IDataMap
     return null;
   }
 
-  public function get associations():Array { return null; }
+  public function get associations():Array { return _associations; }
 
   public function get points():Array { return _points; }
 }
+}
+
+import com.datamapper.core.IAssociation;
+import com.datamapper.core.IDataPoint;
+import com.datamapper.core.IDataSource;
+import com.datamapper.core.IRepository;
+
+class PendingAssociation
+{
+  //--------------------------------------------------------------------------
+  //
+  //  Constructor
+  //
+  //--------------------------------------------------------------------------
+  public function PendingAssociation(point:IDataPoint, factory:Class)
+  {
+    this.point = point;
+    this.factory = factory;
+  }
+
+
+  //--------------------------------------------------------------------------
+  //
+  //  Variables
+  //
+  //--------------------------------------------------------------------------
+  private var point:IDataPoint;
+  private var factory:Class;
+
+
+  //--------------------------------------------------------------------------
+  //
+  //  Methods
+  //
+  //--------------------------------------------------------------------------
+  public function repositoryAdded(ds:IDataSource, rep:IRepository):IAssociation
+  {
+    if (point.destinationType != rep.type)
+      return null;
+
+    return new factory(point, rep);
+  }
 }

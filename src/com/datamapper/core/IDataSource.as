@@ -19,14 +19,14 @@ public interface IDataSource extends IEventDispatcher
    * @param col
    * @param type
    */
-  function addRepository(col:ArrayCollection, type:Class):void;
+  function addRepository(col:ArrayCollection, type:Class):IRepository;
 
   /**
    * Remove previously registered repository
    * @param col
    * @param type
    */
-  function removeRepository(type:Class):void;
+  function removeRepository(type:Class):IRepository;
 
   /**
    * remove all previously created repositories

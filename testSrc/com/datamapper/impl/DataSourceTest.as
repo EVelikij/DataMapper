@@ -9,6 +9,8 @@ package com.datamapper.impl
 {
 import com.datamapper.errors.RepositoryError;
 import com.datamapper.events.RepositoryEvent;
+import com.datamapper.impl.support.GroupDTO;
+import com.datamapper.impl.support.StudentDTO;
 
 import mx.collections.ArrayCollection;
 
@@ -43,8 +45,8 @@ public class DataSourceTest
   public function setUp():void
   {
     ds = new DataSource();
-    ds.addRepository(new ArrayCollection(), Button);
-    ds.addRepository(new ArrayCollection(), Label);
+    ds.addRepository(new ArrayCollection(), GroupDTO);
+    ds.addRepository(new ArrayCollection(), StudentDTO);
   }
 
   [After]
@@ -69,17 +71,17 @@ public class DataSourceTest
   public function testAddExistRepositoryType():void
   {
     assertThat("DataSource can contain only one repository for the specified type.",
-      function():void { ds.addRepository(new ArrayCollection(), Button); }, throws(RepositoryError) );
+      function():void { ds.addRepository(new ArrayCollection(), GroupDTO); }, throws(RepositoryError) );
   }
 
   [Test]
   public function testHasRepositoryFor():void
   {
     assertTrue("Data source doesn't have repository for registered type by instance.",
-            ds.hasRepositoryFor(new Button()));
+            ds.hasRepositoryFor(new GroupDTO()));
 
     assertTrue("Data source doesn't have repository for registered type by type.",
-            ds.hasRepositoryFor(Button));
+            ds.hasRepositoryFor(GroupDTO));
   }
 
   [Test]
@@ -103,10 +105,10 @@ public class DataSourceTest
   public function testRemoveRepository():void
   {
     // remove repository
-    ds.removeRepository(Button);
+    ds.removeRepository(GroupDTO);
 
     assertThat("DataSource doesn't remove repository.", ds.length, equalTo(1));
-    assertFalse("After remove repository getRepositoryFor method still return repository.", ds.hasRepositoryFor(Button));
+    assertFalse("After remove repository getRepositoryFor method still return repository.", ds.hasRepositoryFor(GroupDTO));
   }
 
   [Test]
@@ -114,11 +116,11 @@ public class DataSourceTest
   {
     // test by instance
     assertThat("Data source doesn't return repository for registered type by instance.",
-            ds.getRepositoryFor(new Button()), notNullValue());
+            ds.getRepositoryFor(new GroupDTO()), notNullValue());
 
     // test by type
     assertThat("Data source doesn't return repository for registered type by type.",
-            ds.getRepositoryFor(Button), notNullValue());
+            ds.getRepositoryFor(GroupDTO), notNullValue());
   }
 
   [Test]
@@ -139,13 +141,13 @@ public class DataSourceTest
 
 
     // register two new repositories
-    ds.addRepository(new ArrayCollection(), Button);
-    ds.addRepository(new ArrayCollection(), Label);
+    ds.addRepository(new ArrayCollection(), GroupDTO);
+    ds.addRepository(new ArrayCollection(), StudentDTO);
 
     assertThat(counter, equalTo(2));
 
-    ds.removeRepository(Button);
-    ds.removeRepository(Label);
+    ds.removeRepository(GroupDTO);
+    ds.removeRepository(StudentDTO);
 
     assertThat(counter, equalTo(0));
   }

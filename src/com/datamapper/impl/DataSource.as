@@ -47,7 +47,7 @@ public class DataSource extends EventDispatcher implements IDataSource
   //  IDataSource implementation
   //
   //--------------------------------------------------------------------------
-  public function addRepository(col:ArrayCollection, type:Class):void
+  public function addRepository(col:ArrayCollection, type:Class):IRepository
   {
     if (repositoryTypeMap[type] == undefined)
     {
@@ -58,12 +58,14 @@ public class DataSource extends EventDispatcher implements IDataSource
 
       // now we can dispatch ADDED event
       dispatchEvent(new RepositoryEvent(RepositoryEvent.ADDED, rep));
+
+      return rep;
     }
     else
       throw RepositoryError.repositoryExist(type);
   }
 
-  public function removeRepository(type:Class):void
+  public function removeRepository(type:Class):IRepository
   {
     var rep:IRepository = getRepositoryFor(type);
 
@@ -75,6 +77,8 @@ public class DataSource extends EventDispatcher implements IDataSource
       // now we can dispatch REMOVED event
       dispatchEvent(new RepositoryEvent(RepositoryEvent.REMOVED, rep));
     }
+
+    return rep;
   }
 
   public function removeAllRepositories():void

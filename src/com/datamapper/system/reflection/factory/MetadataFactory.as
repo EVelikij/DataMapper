@@ -20,7 +20,11 @@ import flash.utils.getDefinitionByName;
   public class MetadataFactory
   { 
     private static var registredMatadataTags:Array = [MetadataNames.ID,
-                                                      MetadataNames.FOREIGN_KEY];
+                                                      MetadataNames.FOREIGN_KEY,
+                                                      MetadataNames.HAS_ONE,
+                                                      MetadataNames.BELONGS_TO,
+                                                      MetadataNames.HAS_MANY,
+                                                      MetadataNames.HAS_AND_BELONGS_TO_MANY];
     
     
     //--------------------------------------------------------------------------
