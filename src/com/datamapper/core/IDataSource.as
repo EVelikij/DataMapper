@@ -46,7 +46,7 @@ public interface IDataSource extends IEventDispatcher
   /**
    * check for exist repository
    */
-  function hasRepositoryFor(entityOrClass:*):Boolean
+  function hasRepositoryFor(entityOrClass:*):Boolean;
 
 }
 }

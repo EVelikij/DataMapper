@@ -19,6 +19,11 @@ public interface IDataMap
 
   function get points():Array;
 
+  function get hasOnePoints():Array;
+  function get belongsToPoints():Array;
+  function get hasManyPoints():Array;
+  function get hasAndBelongsToManyPoints():Array;
+
   function get repositoryType():Class;
 }
 }

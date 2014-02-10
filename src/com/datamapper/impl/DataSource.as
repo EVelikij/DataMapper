@@ -17,6 +17,8 @@ import flash.utils.Dictionary;
 
 import mx.collections.ArrayCollection;
 
+import org.flexunit.runner.notification.async.WaitingListener;
+
 [Event(name="added", type="com.datamapper.events.RepositoryEvent")]
 
 [Event(name="removed", type="com.datamapper.events.RepositoryEvent")]
@@ -52,6 +54,7 @@ public class DataSource extends EventDispatcher implements IDataSource
     if (repositoryTypeMap[type] == undefined)
     {
       var rep:IRepository = new Repository(col, type, this);
+
 
       repositories.push(rep);
       repositoryTypeMap[type] = rep;

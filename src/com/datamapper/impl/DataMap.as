@@ -54,7 +54,7 @@ public class DataMap implements IDataMap
   //
   //--------------------------------------------------------------------------
   private var type:Class;
-  private var ds:IDataSource
+  private var ds:IDataSource;
 
   private var description:MetadataTypeDescriptor;
 
@@ -303,6 +303,14 @@ public class DataMap implements IDataMap
   public function get associations():Array { return _associations; }
 
   public function get points():Array { return _points; }
+
+  public function get hasOnePoints():Array { return _hasOnePoints; }
+
+  public function get belongsToPoints():Array { return _belongsToPoints; }
+
+  public function get hasManyPoints():Array { return _hasManyPoints; }
+
+  public function get hasAndBelongsToManyPoints():Array { return _hasAndBelongsToManyPoints; }
 }
 }
 

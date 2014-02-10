@@ -7,6 +7,8 @@
  */
 package com.datamapper.impl.support
 {
+import mx.collections.ArrayCollection;
+
 public class GroupDTO
 {
   [Id]
@@ -15,6 +17,6 @@ public class GroupDTO
   public var name:String;
 
   [HasMany(type="com.datamapper.impl.support.StudentDTO")]
-  public var students:Array;
+  public var students:ArrayCollection;
 }
 }

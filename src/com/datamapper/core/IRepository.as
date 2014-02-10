@@ -28,6 +28,8 @@ public interface IRepository extends IEventDispatcher
    */
   function get type():Class;
 
+  function get dataSource():IDataSource;
+
   /**
    * Search entity item in <code>source</code> by inner key.
    *
@@ -40,5 +42,9 @@ public interface IRepository extends IEventDispatcher
    * @param entity item for with the value must be find
    */
   function getInnerKeyValue(entity:*):*;
+
+  function getByForeignKey(entity:*):Array;
+
+  function updateAssociations(foreignInstance:*, innerInstance:* = null):void;
 }
 }

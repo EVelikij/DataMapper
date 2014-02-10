@@ -7,14 +7,19 @@
  */
 package com.datamapper.core
 {
+import com.datamapper.impl.associations.BelongsTo;
+import com.datamapper.impl.associations.HasAndBelongsToMany;
+import com.datamapper.impl.associations.HasMany;
+import com.datamapper.impl.associations.HasOne;
+
 public interface IDataWatcher
 {
-  function belongsTo(association:IAssociation):void;
+  function belongsTo(association:BelongsTo):void;
 
-  function hasOne(association:IAssociation):void;
+  function hasOne(association:HasOne):void;
 
-  function hasMany(association:IAssociation):void;
+  function hasMany(association:HasMany):void;
 
-  function hasAndBelongsToMany(association:IAssociation):void;
+  function hasAndBelongsToMany(association:HasAndBelongsToMany):void;
 }
 }
