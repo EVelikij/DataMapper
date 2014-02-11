@@ -7,7 +7,6 @@
  */
 package com.datamapper.core
 {
-import com.datamapper.impl.DataMap;
 import com.datamapper.system.reflection.MetadataHostProperty;
 
 public interface IDataPoint
@@ -27,7 +26,7 @@ public interface IDataPoint
    */
   function get destinationType():Class;
 
-  function get map():DataMap;
+  function get map():IDataMap;
 
 }
 }

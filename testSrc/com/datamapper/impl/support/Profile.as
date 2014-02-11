@@ -11,10 +11,10 @@ public class Profile
   [ForeignKey(type="com.datamapper.impl.support.StudentDTO")]
   public var studentId:int;
 
-  [HasOne]
-  public var student:StudentDTO;
-
   public var email:String;
   public var password:String;
+
+  [HasOne]
+  public var student:StudentDTO;
 }
 }

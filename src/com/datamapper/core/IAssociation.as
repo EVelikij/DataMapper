@@ -9,7 +9,7 @@ package com.datamapper.core
 {
 public interface IAssociation
 {
-  function get source():IDataPoint;
+  function get point():IDataPoint;
 
   function get destination():IRepository;
 

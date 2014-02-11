@@ -40,7 +40,7 @@ public class BaseAssociation implements IAssociation
   //  IAssociation implementation
   //
   //--------------------------------------------------------------------------
-  public function get source():IDataPoint { return _source; }
+  public function get point():IDataPoint { return _source; }
 
   public function get destination():IRepository { return _destination; }
 

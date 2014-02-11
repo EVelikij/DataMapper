@@ -18,7 +18,7 @@ public class Storage
     </students>
 
     <profiles>
-      <profile id="1" email="alice@gmail.com" password="password" studentId="3" />
+      <profile id="1" email="alice@gmail.com" password="password" studentId="1" />
     </profiles>
   </storage>;
 }

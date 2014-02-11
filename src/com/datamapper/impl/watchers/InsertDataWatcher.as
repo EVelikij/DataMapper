@@ -41,7 +41,7 @@ public class InsertDataWatcher extends BaseDataWatcher
 
     if (destinationItems.length)
     {
-      item[association.source.property.name] = destinationItems[0];
+      item[association.point.property.name] = destinationItems[0];
       association.destination.updateAssociations(item);
     }
   }
@@ -49,12 +49,12 @@ public class InsertDataWatcher extends BaseDataWatcher
   override public function hasOne(association:HasOne):void
   {
     // свойсво с внешним ключом для указанной ассоциации
-    var foreignKeyProperty:MetadataHostProperty = repository.map.getForeignKeyFor(association.source.sourceType);
+    var foreignKeyProperty:MetadataHostProperty = repository.map.getForeignKeyFor(association.point.sourceType);
     var foreignKeyId:* = item[foreignKeyProperty.name];         //  значение внешнего ключа
     var associatedItem:* = association.destination.getItemById(foreignKeyId);
 
     if (associatedItem != null)
-      item[association.source.property.name] = associatedItem;
+      item[association.point.property.name] = associatedItem;
 
     association.destination.updateAssociations(item, associatedItem);
   }
@@ -62,7 +62,7 @@ public class InsertDataWatcher extends BaseDataWatcher
   override public function hasMany(association:HasMany):void
   {
     var destinationItems:Array = association.destination.getByForeignKey(item);
-    addAssociatedItems(association.source, destinationItems);
+    addAssociatedItems(association.point, destinationItems);
 
     association.destination.updateAssociations(item);
   }

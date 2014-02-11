@@ -7,6 +7,7 @@
  */
 package com.datamapper.impl.points
 {
+import com.datamapper.core.IDataMap;
 import com.datamapper.core.IDataPoint;
 import com.datamapper.impl.DataMap;
 import com.datamapper.system.reflection.MetadataHostProperty;
@@ -47,7 +48,7 @@ public class BaseDataPoint implements IDataPoint
 
   public function get destinationType():Class { return _destinationType; }
 
-  public function get map():DataMap { return _map; }
+  public function get map():IDataMap { return _map; }
 
 
   //--------------------------------------------------------------------------
