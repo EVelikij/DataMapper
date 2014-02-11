@@ -19,5 +19,8 @@ public class StudentDTO
 
   [HasOne]
   public var group:GroupDTO;
+
+  [BelongsTo]
+  public var profile:Profile;
 }
 }

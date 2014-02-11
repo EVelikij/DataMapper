@@ -37,6 +37,13 @@ public class InsertDataWatcher extends BaseDataWatcher
   //--------------------------------------------------------------------------
   override public function belongsTo(association:BelongsTo):void
   {
+    var destinationItems:Array = association.destination.getByForeignKey(item);
+
+    if (destinationItems.length)
+    {
+      item[association.source.property.name] = destinationItems[0];
+      association.destination.updateAssociations(item);
+    }
   }
 
   override public function hasOne(association:HasOne):void

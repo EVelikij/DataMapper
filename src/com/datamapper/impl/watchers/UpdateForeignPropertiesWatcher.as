@@ -37,6 +37,7 @@ public class UpdateForeignPropertiesWatcher extends BaseDataWatcher
   //--------------------------------------------------------------------------
   override public function belongsTo(association:BelongsTo):void
   {
+    item[association.source.property.name] = foreignInstance;
   }
 
   override public function hasOne(association:HasOne):void

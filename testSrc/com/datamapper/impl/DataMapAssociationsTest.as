@@ -11,6 +11,7 @@ import com.datamapper.core.IDataMap;
 import com.datamapper.core.IDataSource;
 import com.datamapper.core.IRepository;
 import com.datamapper.impl.support.GroupDTO;
+import com.datamapper.impl.support.Profile;
 import com.datamapper.impl.support.StudentDTO;
 
 import mx.collections.ArrayCollection;
@@ -31,9 +32,11 @@ public class DataMapAssociationsTest
   private var ds:IDataSource;
   private var students:ArrayCollection;
   private var groups:ArrayCollection;
+  private var profiles:ArrayCollection;
 
   private var studentsRepository:IRepository;
   private var groupsRepository:IRepository;
+  private var profileRepository:IRepository;
 
 
   //--------------------------------------------------------------------------
@@ -47,9 +50,11 @@ public class DataMapAssociationsTest
     ds = new DataSource();
     students = new ArrayCollection();
     groups = new ArrayCollection();
+    profiles = new ArrayCollection();
 
     studentsRepository = ds.addRepository(students, StudentDTO);
     groupsRepository = ds.addRepository(groups, GroupDTO);
+    profileRepository = ds.addRepository(profiles, Profile);
   }
 
   [After]
@@ -72,7 +77,7 @@ public class DataMapAssociationsTest
     var studentMap:IDataMap = studentsRepository.map;
     var groupMap:IDataMap = groupsRepository.map;
 
-    assertThat(studentMap.associations, arrayWithSize(1));
+    assertThat(studentMap.associations, arrayWithSize(2));
     assertThat(groupMap.associations, arrayWithSize(1));
   }
 
@@ -87,6 +92,11 @@ public class DataMapAssociationsTest
   [Test]
   public function testInsert():void
   {
+    var profile:Profile = new Profile();
+    profile.studentId = 2;
+    profile.email = "alice@gmail.com";
+    profile.password = "password";
+
     var student1:StudentDTO = new StudentDTO();
     student1.id = 1;
     student1.name = "Alice";
@@ -109,12 +119,16 @@ public class DataMapAssociationsTest
     group2.id = 2;
     group2.name = "Second group";
 
+
+
     groups.addItem(group1);
     groups.addItem(group2);
 
     students.addItem(student1);
     students.addItem(student2);
     students.addItem(student3);
+
+    profiles.addItem(profile);
 
     trace();
   }
