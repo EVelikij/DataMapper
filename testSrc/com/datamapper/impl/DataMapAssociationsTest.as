@@ -104,6 +104,7 @@ public class DataMapAssociationsTest
     students.addAll(EntityFactory.createStudents(Storage.DATA));
     profiles.addAll(EntityFactory.createProfiles(Storage.DATA));
 
+    students.removeItemAt(1);
 
     trace();
   }

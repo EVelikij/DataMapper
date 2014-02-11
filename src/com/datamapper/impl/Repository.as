@@ -13,6 +13,7 @@ import com.datamapper.core.IDataSource;
 import com.datamapper.core.IDataWatcher;
 import com.datamapper.core.IRepository;
 import com.datamapper.errors.RepositoryError;
+import com.datamapper.impl.watchers.DeleteWatcher;
 import com.datamapper.impl.watchers.InsertDataWatcher;
 import com.datamapper.impl.watchers.UpdateForeignPropertiesWatcher;
 import com.datamapper.system.reflection.MetadataHostProperty;
@@ -62,13 +63,25 @@ public class Repository extends EventDispatcher implements IRepository
   //  IRepository implementation
   //
   //--------------------------------------------------------------------------
-  public function get source():ArrayCollection { return _source; }
+  public function get source():ArrayCollection
+  {
+    return _source;
+  }
 
-  public function get map():IDataMap { return _map; }
+  public function get map():IDataMap
+  {
+    return _map;
+  }
 
-  public function get type():Class { return _type; }
+  public function get type():Class
+  {
+    return _type;
+  }
 
-  public function get dataSource():IDataSource { return _ds; }
+  public function get dataSource():IDataSource
+  {
+    return _ds;
+  }
 
   public function getItemById(id:*):*
   {
@@ -112,17 +125,7 @@ public class Repository extends EventDispatcher implements IRepository
     return result;
   }
 
-  private function compareByForeignKey(prop:MetadataHostProperty, item:*, key:*):Boolean
-  {
-    var p:String = prop.name;
-
-    return (item[p] is Array && item[p].indexOf(key) != -1) ||
-            (item[p] is ArrayCollection && ArrayCollection(item[p]).getItemIndex(key) != -1) ||
-            (item[p] == key);
-  }
-
-
-  public function updateAssociations(foreignInstance:*, updatedItems:Array = null):void
+  public function updateAssociations(foreignInstance:*, updatedItems:Array, remove:Boolean = false):void
   {
     var type:Class = foreignInstance.constructor;
 
@@ -139,7 +142,7 @@ public class Repository extends EventDispatcher implements IRepository
       {
         for each (var e:* in updatedItems)
         {
-          var watcher:IDataWatcher = new UpdateForeignPropertiesWatcher(this, e, foreignInstance);
+          var watcher:IDataWatcher = new UpdateForeignPropertiesWatcher(this, e, foreignInstance, remove);
           association.accept(watcher);
         }
       }
@@ -172,6 +175,26 @@ public class Repository extends EventDispatcher implements IRepository
 
   }
 
+  protected function itemsRemoved(items:Array):void
+  {
+    for each (var item:* in items)
+    {
+      var watcher:IDataWatcher = new DeleteWatcher(this, item);
+
+      for each (var assoc:IAssociation in map.associations)
+        assoc.accept(watcher);
+    }
+  }
+
+
+  private function compareByForeignKey(prop:MetadataHostProperty, item:*, key:*):Boolean
+  {
+    var p:String = prop.name;
+
+    return (item[p] is Array && item[p].indexOf(key) != -1) ||
+            (item[p] is ArrayCollection && ArrayCollection(item[p]).getItemIndex(key) != -1) ||
+            (item[p] == key);
+  }
 
 
   //--------------------------------------------------------------------------
@@ -184,7 +207,11 @@ public class Repository extends EventDispatcher implements IRepository
     switch (event.kind)
     {
       case CollectionEventKind.ADD:
-              itemsAdded(event.items);
+        itemsAdded(event.items);
+        break;
+
+      case  CollectionEventKind.REMOVE:
+        itemsRemoved(event.items);
         break;
     }
   }

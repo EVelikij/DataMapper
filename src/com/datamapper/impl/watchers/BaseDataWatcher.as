@@ -20,6 +20,8 @@ import com.datamapper.system.reflection.MetadataHostProperty;
 
 import mx.collections.ArrayCollection;
 
+import mx.collections.ArrayCollection;
+
 public class BaseDataWatcher implements IDataWatcher
 {
   //--------------------------------------------------------------------------
@@ -82,16 +84,46 @@ public class BaseDataWatcher implements IDataWatcher
     switch (prop.type)
     {
       case Array:
-              item[prop.name] ||= [];
-              for each (var e:* in items)
-                item[prop.name].push(e);
+        item[prop.name] ||= [];
+        for each (var e:* in items)
+          item[prop.name].push(e);
         break;
 
       case ArrayCollection:
-              item[prop.name] ||= new ArrayCollection();
+        item[prop.name] ||= new ArrayCollection();
 
-              for each (e in items)
-                ArrayCollection(item[prop.name]).addItem(e);
+        for each (e in items)
+          ArrayCollection(item[prop.name]).addItem(e);
+        break;
+    }
+  }
+
+  protected function removeAssociatedItems(point:IDataPoint, items:Array):void
+  {
+    var prop:MetadataHostProperty = point.property;
+    var index:int;
+
+    switch (prop.type)
+    {
+      case Array:
+        item[prop.name] ||= [];
+        for each (var e:* in items)
+        {
+          index = item[prop.name].indexOf(e);
+          if (index != -1)
+           item[prop.name].splice(index, 1);
+        }
+        break;
+
+      case ArrayCollection:
+        item[prop.name] ||= new ArrayCollection();
+
+        for each (e in items)
+        {
+          index = item[prop.name].getItemIndex(e);
+          if (index != -1)
+            item[prop.name].removeItemAt(index);
+        }
         break;
     }
   }

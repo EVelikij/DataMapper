@@ -1,8 +1,8 @@
 /**
  * Created with IntelliJ IDEA.
  * User: evgenii
- * Date: 10.02.14
- * Time: 22:45
+ * Date: 12.02.14
+ * Time: 0:48
  * To change this template use File | Settings | File Templates.
  */
 package com.datamapper.impl.watchers
@@ -13,23 +13,17 @@ import com.datamapper.impl.associations.HasAndBelongsToMany;
 import com.datamapper.impl.associations.HasMany;
 import com.datamapper.impl.associations.HasOne;
 
-public class UpdateForeignPropertiesWatcher extends BaseDataWatcher
+public class DeleteWatcher extends BaseDataWatcher
 {
   //--------------------------------------------------------------------------
   //
   //  Constructor
   //
   //--------------------------------------------------------------------------
-  public function UpdateForeignPropertiesWatcher(repository:IRepository, item:*, foreignInstance:*, remove:Boolean)
+  public function DeleteWatcher(repository:IRepository, item:*)
   {
     super(repository, item);
-
-    this.foreignInstance = foreignInstance;
-    this.remove = remove;
   }
-
-  private var foreignInstance:*;
-  private var remove:Boolean;
 
 
   //--------------------------------------------------------------------------
@@ -39,25 +33,21 @@ public class UpdateForeignPropertiesWatcher extends BaseDataWatcher
   //--------------------------------------------------------------------------
   override public function belongsTo(association:BelongsTo):void
   {
-    item[association.point.property.name] = foreignInstance;
   }
 
   override public function hasOne(association:HasOne):void
   {
-    item[association.point.property.name] = foreignInstance;
+    var propName:String = association.point.property.name;
+    association.destination.updateAssociations(item, [item[propName]], true);
+    item[propName] = null;
   }
 
   override public function hasMany(association:HasMany):void
   {
-    if (remove)
-      removeAssociatedItems(association.point, [foreignInstance]);
-    else
-      addAssociatedItems(association.point, [foreignInstance]);
   }
 
   override public function hasAndBelongsToMany(association:HasAndBelongsToMany):void
   {
-    addAssociatedItems(association.point, [foreignInstance]);
   }
 }
 }
