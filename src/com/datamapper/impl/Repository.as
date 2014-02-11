@@ -108,10 +108,13 @@ public class Repository extends EventDispatcher implements IRepository
     return result;
   }
 
-  public function updateAssociations(foreignInstance:*, innerInstance:* = null):void
+  public function updateAssociations(foreignInstance:*, updatedItems:Array = null):void
   {
     var type:Class = foreignInstance.constructor;
-    var updatedItems:Array = innerInstance ? [innerInstance] : getByForeignKey(foreignInstance);
+
+    // if we do no send any instances we find it by foreignInstance
+    if (updatedItems == null || updatedItems.length == 0)
+      updatedItems = getByForeignKey(foreignInstance);
 
     if (updatedItems.length == 0)
       return;

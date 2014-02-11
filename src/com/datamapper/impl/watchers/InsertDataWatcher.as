@@ -42,7 +42,7 @@ public class InsertDataWatcher extends BaseDataWatcher
     if (destinationItems.length)
     {
       item[association.point.property.name] = destinationItems[0];
-      association.destination.updateAssociations(item);
+      association.destination.updateAssociations(item, destinationItems);
     }
   }
 
@@ -54,9 +54,11 @@ public class InsertDataWatcher extends BaseDataWatcher
     var associatedItem:* = association.destination.getItemById(foreignKeyId);
 
     if (associatedItem != null)
+    {
       item[association.point.property.name] = associatedItem;
 
-    association.destination.updateAssociations(item, associatedItem);
+      association.destination.updateAssociations(item, [associatedItem]);
+    }
   }
 
   override public function hasMany(association:HasMany):void
@@ -64,7 +66,7 @@ public class InsertDataWatcher extends BaseDataWatcher
     var destinationItems:Array = association.destination.getByForeignKey(item);
     addAssociatedItems(association.point, destinationItems);
 
-    association.destination.updateAssociations(item);
+    association.destination.updateAssociations(item, destinationItems);
   }
 
   override public function hasAndBelongsToMany(association:HasAndBelongsToMany):void

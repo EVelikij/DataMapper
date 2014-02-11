@@ -45,6 +45,6 @@ public interface IRepository extends IEventDispatcher
 
   function getByForeignKey(entity:*):Array;
 
-  function updateAssociations(foreignInstance:*, innerInstance:* = null):void;
+  function updateAssociations(foreignInstance:*, updatedItems:Array = null):void;
 }
 }
