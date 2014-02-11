@@ -21,6 +21,9 @@ public class StudentDTO
   public var group:GroupDTO;
 
   [BelongsTo]
-  public var profile:Profile;
+  public var profile:ProfileDTO;
+
+  [HasAndBelongsToMany(type="com.datamapper.impl.support.TeacherDTO")]
+  public var teachers:Array;
 }
 }

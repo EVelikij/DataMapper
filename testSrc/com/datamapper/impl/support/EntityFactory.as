@@ -3,6 +3,8 @@
  */
 package com.datamapper.impl.support
 {
+import com.datamapper.impl.support.TeacherDTO;
+
 import mx.collections.ArrayCollection;
 
 import spark.components.Group;
@@ -58,7 +60,7 @@ public class EntityFactory
 
     for each (var node:XML in xmlProfile)
     {
-      var profile:Profile = new Profile();
+      var profile:ProfileDTO = new ProfileDTO();
 
       profile.id = node.@id;
       profile.email = node.@email;
@@ -66,6 +68,28 @@ public class EntityFactory
       profile.studentId = node.@studentId;
 
       result.addItem(profile);
+    }
+
+    return result;
+  }
+
+  public static function createTeachers(data:XML):ArrayCollection
+  {
+    var result:ArrayCollection = new ArrayCollection();
+    var xmlTechers:XMLList = data..teacher;
+
+    for each (var node:XML in xmlTechers)
+    {
+      var teacher:TeacherDTO = new TeacherDTO();
+      var studentsId:Array = String(node.@studentsId).split(/\s*,\s*/);
+
+      teacher.id = node.@id;
+      teacher.studentsId = [];
+
+      for each (var id:String in studentsId)
+        teacher.studentsId.push(int(id));
+
+      result.addItem(teacher);
     }
 
     return result;

@@ -99,14 +99,28 @@ public class Repository extends EventDispatcher implements IRepository
     var foreignKeyProperty:MetadataHostProperty = map.getForeignKeyFor(entity);
     var result:Array = [];
 
-    for each (var item:* in source)
+    if (foreignKeyProperty)
     {
-      if (item[foreignKeyProperty.name] == foreignKeyValue)
-        result.push(item);
+      for each (var item:* in source)
+      {
+        if (compareByForeignKey(foreignKeyProperty, item, foreignKeyValue))
+          result.push(item);
+      }
     }
+
 
     return result;
   }
+
+  private function compareByForeignKey(prop:MetadataHostProperty, item:*, key:*):Boolean
+  {
+    var p:String = prop.name;
+
+    return (item[p] is Array && item[p].indexOf(key) != -1) ||
+            (item[p] is ArrayCollection && ArrayCollection(item[p]).getItemIndex(key) != -1) ||
+            (item[p] == key);
+  }
+
 
   public function updateAssociations(foreignInstance:*, updatedItems:Array = null):void
   {

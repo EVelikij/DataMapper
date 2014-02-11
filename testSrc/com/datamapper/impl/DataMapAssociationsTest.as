@@ -12,9 +12,10 @@ import com.datamapper.core.IDataSource;
 import com.datamapper.core.IRepository;
 import com.datamapper.impl.support.EntityFactory;
 import com.datamapper.impl.support.GroupDTO;
-import com.datamapper.impl.support.Profile;
+import com.datamapper.impl.support.ProfileDTO;
 import com.datamapper.impl.support.Storage;
 import com.datamapper.impl.support.StudentDTO;
+import com.datamapper.impl.support.TeacherDTO;
 
 import mx.collections.ArrayCollection;
 
@@ -35,10 +36,12 @@ public class DataMapAssociationsTest
   private var students:ArrayCollection;
   private var groups:ArrayCollection;
   private var profiles:ArrayCollection;
+  private var teachers:ArrayCollection;
 
   private var studentsRepository:IRepository;
   private var groupsRepository:IRepository;
   private var profileRepository:IRepository;
+  private var teachersRepository:IRepository;
 
 
   //--------------------------------------------------------------------------
@@ -53,10 +56,12 @@ public class DataMapAssociationsTest
     students = new ArrayCollection();
     groups = new ArrayCollection();
     profiles = new ArrayCollection();
+    teachers = new ArrayCollection();
 
     studentsRepository = ds.addRepository(students, StudentDTO);
     groupsRepository = ds.addRepository(groups, GroupDTO);
-    profileRepository = ds.addRepository(profiles, Profile);
+    profileRepository = ds.addRepository(profiles, ProfileDTO);
+    teachersRepository = ds.addRepository(teachers, TeacherDTO);
   }
 
   [After]
@@ -79,7 +84,7 @@ public class DataMapAssociationsTest
     var studentMap:IDataMap = studentsRepository.map;
     var groupMap:IDataMap = groupsRepository.map;
 
-    assertThat(studentMap.associations, arrayWithSize(2));
+    assertThat(studentMap.associations, arrayWithSize(3));
     assertThat(groupMap.associations, arrayWithSize(1));
   }
 
@@ -94,9 +99,11 @@ public class DataMapAssociationsTest
   [Test]
   public function testInsert():void
   {
+    teachers.addAll(EntityFactory.createTeachers(Storage.DATA));
     groups.addAll(EntityFactory.createGroups(Storage.DATA));
     students.addAll(EntityFactory.createStudents(Storage.DATA));
     profiles.addAll(EntityFactory.createProfiles(Storage.DATA));
+
 
     trace();
   }

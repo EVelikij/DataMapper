@@ -71,6 +71,30 @@ public class InsertDataWatcher extends BaseDataWatcher
 
   override public function hasAndBelongsToMany(association:HasAndBelongsToMany):void
   {
+    var foreignType:Class = association.point.destinationType;
+    var foreignKeyProperty:MetadataHostProperty = repository.map.getForeignKeyFor(foreignType);
+    var foreignRepository:IRepository = repository.dataSource.getRepositoryFor(foreignType);
+    var foreignItems:Array = [];
+
+    if (foreignKeyProperty)
+    {
+      var foreignIds:Array = item[foreignKeyProperty.name];
+
+
+      for each (var id:* in foreignIds)
+      {
+        var foreign:* = foreignRepository.getItemById(id);
+
+        if (foreign)
+          foreignItems.push(foreign);
+
+      }
+    }
+    else
+      foreignItems = foreignRepository.getByForeignKey(item);
+
+    addAssociatedItems(association.point, foreignItems);
+    foreignRepository.updateAssociations(item, foreignItems);
   }
 
 }

@@ -52,6 +52,7 @@ public class UpdateForeignPropertiesWatcher extends BaseDataWatcher
 
   override public function hasAndBelongsToMany(association:HasAndBelongsToMany):void
   {
+    addAssociatedItems(association.point, [foreignInstance]);
   }
 }
 }

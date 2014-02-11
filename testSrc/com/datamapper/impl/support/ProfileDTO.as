@@ -3,7 +3,7 @@
  */
 package com.datamapper.impl.support
 {
-public class Profile
+public class ProfileDTO
 {
   [Id]
   public var id:int;
