@@ -30,7 +30,7 @@ public class Repository extends EventDispatcher implements IRepository
   //  Constructor
   //
   //--------------------------------------------------------------------------
-  public function Repository(source:ArrayCollection, type:Class, ds:DataSource)
+  public function Repository(source:ArrayCollection, type:Class, ds:IDataSource)
   {
     super();
 
@@ -52,7 +52,7 @@ public class Repository extends EventDispatcher implements IRepository
   //--------------------------------------------------------------------------
   private var _source:ArrayCollection;
   private var _type:Class;
-  private var _ds:DataSource;
+  private var _ds:IDataSource;
 
   private var _map:DataMap;
 
@@ -144,6 +144,9 @@ public class Repository extends EventDispatcher implements IRepository
   {
     for each (var item:* in items)
     {
+      if (item.constructor != type)
+        throw RepositoryError.wrongEntityType(item, type);
+
       var watcher:IDataWatcher = new InsertDataWatcher(this, item);
 
       for each (var assoc:IAssociation in map.associations)
