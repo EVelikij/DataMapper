@@ -19,6 +19,7 @@ import com.datamapper.impl.watchers.UpdateForeignPropertiesWatcher;
 import com.datamapper.system.reflection.MetadataHostProperty;
 
 import flash.events.EventDispatcher;
+import flash.utils.Dictionary;
 
 import mx.collections.ArrayCollection;
 import mx.events.CollectionEvent;
@@ -39,6 +40,8 @@ public class Repository extends EventDispatcher implements IRepository
     this._type = type;
     this._ds = ds;
 
+    hashed = new Dictionary();
+
     _map = new DataMap(type, ds);
     _map.init();
 
@@ -56,6 +59,7 @@ public class Repository extends EventDispatcher implements IRepository
   private var _ds:IDataSource;
 
   private var _map:DataMap;
+  private var hashed:Dictionary;
 
 
   //--------------------------------------------------------------------------
@@ -87,11 +91,18 @@ public class Repository extends EventDispatcher implements IRepository
   {
     var innerKeyName:String = map.id.name;
 
+    if (hashed[id])
+      return hashed[id];
+
     // loop by each item in repository and check on inner key property exist
     for each (var item:* in _source)
     {
       if (item.hasOwnProperty(innerKeyName) && item[innerKeyName] == id)
+      {
+        hashed[id] = item;
         return item;
+      }
+
     }
 
     return null;
@@ -167,6 +178,12 @@ public class Repository extends EventDispatcher implements IRepository
       if (item.constructor != type)
         throw RepositoryError.wrongEntityType(item, type);
 
+      var id:* = getInnerKeyValue(item);
+      if (hashed[id])
+        throw RepositoryError.entityWithIdExist(String(id), type);
+
+      hashed[id] = item;
+
       var watcher:IDataWatcher = new InsertDataWatcher(this, item);
 
       for each (var assoc:IAssociation in map.associations)
@@ -179,6 +196,11 @@ public class Repository extends EventDispatcher implements IRepository
   {
     for each (var item:* in items)
     {
+      var id:* = getInnerKeyValue(item);
+
+      if (hashed[id])
+        delete hashed[id];
+
       var watcher:IDataWatcher = new DeleteWatcher(this, item);
 
       for each (var assoc:IAssociation in map.associations)
