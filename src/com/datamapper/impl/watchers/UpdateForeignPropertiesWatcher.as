@@ -39,12 +39,12 @@ public class UpdateForeignPropertiesWatcher extends BaseDataWatcher
   //--------------------------------------------------------------------------
   override public function belongsTo(association:BelongsTo):void
   {
-    item[association.point.property.name] = foreignInstance;
+    item[association.point.property.name] = remove ? null : foreignInstance;
   }
 
   override public function hasOne(association:HasOne):void
   {
-    item[association.point.property.name] = foreignInstance;
+    item[association.point.property.name] =  remove ? null : foreignInstance;
   }
 
   override public function hasMany(association:HasMany):void
@@ -57,7 +57,11 @@ public class UpdateForeignPropertiesWatcher extends BaseDataWatcher
 
   override public function hasAndBelongsToMany(association:HasAndBelongsToMany):void
   {
-    addAssociatedItems(association.point, [foreignInstance]);
+    //addAssociatedItems(association.point, [foreignInstance]);
+    if (remove)
+      removeAssociatedItems(association.point, [foreignInstance]);
+    else
+      addAssociatedItems(association.point, [foreignInstance]);
   }
 }
 }
