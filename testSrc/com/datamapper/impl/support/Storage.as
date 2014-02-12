@@ -16,6 +16,7 @@ public class Storage
       <student id="2" name="Bob" groupId="1" />
       <student id="3" name="Dave" groupId="2" />
       <student id="4" name="Walter" groupId="2" />
+      <student id="5" name="Steve" groupId="2" />
     </students>
 
     <profiles>
