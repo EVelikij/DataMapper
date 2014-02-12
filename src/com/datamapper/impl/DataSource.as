@@ -74,6 +74,8 @@ public class DataSource extends EventDispatcher implements IDataSource
 
     if (rep)
     {
+      rep.clean();
+
       repositories.splice(repositories.indexOf(rep), 1);
       delete repositoryTypeMap[type];
 

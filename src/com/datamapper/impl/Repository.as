@@ -46,6 +46,10 @@ public class Repository extends EventDispatcher implements IRepository
     _map.init();
 
     addEventsHandlers();
+
+    // process alredy exist items
+    if (source.length)
+      itemsAdded(source.source);
   }
 
 
@@ -160,8 +164,19 @@ public class Repository extends EventDispatcher implements IRepository
     }
   }
 
+  public function clean():void
+  {
+    map.clean();
 
-  //--------------------------------------------------------------------------
+    // remove listener
+    source.removeEventListener(CollectionEvent.COLLECTION_CHANGE, source_collectionChangeHandler);
+
+    // remove hashed items
+    for (var key:Object in hashed)
+      delete hashed[key];
+  }
+
+//--------------------------------------------------------------------------
   //
   //  Utils
   //

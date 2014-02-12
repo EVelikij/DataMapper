@@ -311,6 +311,13 @@ public class DataMap implements IDataMap
   public function get hasManyPoints():Array { return _hasManyPoints; }
 
   public function get hasAndBelongsToManyPoints():Array { return _hasAndBelongsToManyPoints; }
+
+
+  public function clean():void
+  {
+    ds.removeEventListener(RepositoryEvent.ADDED, ds_repositoryAddedHandler);
+    ds.removeEventListener(RepositoryEvent.REMOVED, ds_repositoryRemovedHandler);
+  }
 }
 }
 
