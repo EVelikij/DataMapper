@@ -22,14 +22,7 @@ public class EntityFactory
     var xmlGroups:XMLList = data..group;
 
     for each (var node:XML in xmlGroups)
-    {
-      var group:GroupDTO = new GroupDTO();
-
-      group.id = node.@id;
-      group.name = node.@name;
-
-      result.addItem(group);
-    }
+      result.addItem(createGroup(node.@id, node.@name));
 
     return result;
   }
@@ -40,15 +33,7 @@ public class EntityFactory
     var xmlStudents:XMLList = data..student;
 
     for each (var node:XML in xmlStudents)
-    {
-      var student:StudentDTO = new StudentDTO();
-
-      student.id = node.@id;
-      student.name = node.@name;
-      student.groupId = node.@groupId;
-
-      result.addItem(student);
-    }
+      result.addItem(createStudent(node.@id, node.@name, node.@groupId));
 
     return result;
   }
@@ -59,16 +44,7 @@ public class EntityFactory
     var xmlProfile:XMLList = data..profile;
 
     for each (var node:XML in xmlProfile)
-    {
-      var profile:ProfileDTO = new ProfileDTO();
-
-      profile.id = node.@id;
-      profile.email = node.@email;
-      profile.password = node.@password;
-      profile.studentId = node.@studentId;
-
-      result.addItem(profile);
-    }
+      result.addItem(createProfile(node.@id, node.@email, node.@password, node.@studentId));
 
     return result;
   }
@@ -79,20 +55,64 @@ public class EntityFactory
     var xmlTechers:XMLList = data..teacher;
 
     for each (var node:XML in xmlTechers)
-    {
-      var teacher:TeacherDTO = new TeacherDTO();
-      var studentsId:Array = String(node.@studentsId).split(/\s*,\s*/);
-
-      teacher.id = node.@id;
-      teacher.studentsId = [];
-
-      for each (var id:String in studentsId)
-        teacher.studentsId.push(int(id));
-
-      result.addItem(teacher);
-    }
+      result.addItem(createTeacher(node.@id, node.@name, String(node.@studentsId)));
 
     return result;
+  }
+
+  public static function createGroup(id:int, name:String):GroupDTO
+  {
+    var group:GroupDTO = new GroupDTO();
+    group.id = id;
+    group.name = name;
+
+    return group;
+  }
+
+  public static function createStudent(id:int, name:String, groupId:int):StudentDTO
+  {
+    var student:StudentDTO = new StudentDTO();
+
+    student.id = id;
+    student.name = name;
+    student.groupId = groupId;
+
+    return student;
+  }
+
+  public static function createProfile(id:int, email:String, password:String, studentId:int):ProfileDTO
+  {
+    var profile:ProfileDTO = new ProfileDTO();
+
+    profile.id = id;
+    profile.email = email;
+    profile.password = password;
+    profile.studentId = studentId;
+
+    return profile;
+  }
+
+  public static function createTeacher(id:int, name:String, studentsId:*):TeacherDTO
+  {
+    var teacher:TeacherDTO = new TeacherDTO();
+    var temp:Array = [];
+
+    teacher.id = id;
+    teacher.name = name;
+
+    if (studentsId is String)
+    {
+      var idAsString:Array = String(studentsId).split(/\s*,\s*/);
+
+      for each (var studId:String in idAsString)
+        temp.push(int(studId));
+    }
+    else if (studentsId is Array)
+      temp = studentsId;
+
+    teacher.studentsId = temp;
+
+    return teacher;
   }
 }
 }

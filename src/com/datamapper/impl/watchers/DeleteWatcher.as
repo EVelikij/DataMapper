@@ -33,21 +33,40 @@ public class DeleteWatcher extends BaseDataWatcher
   //--------------------------------------------------------------------------
   override public function belongsTo(association:BelongsTo):void
   {
+    var propName:String = association.point.property.name;
+
+    if (item[propName] != null)
+    {
+      association.destination.updateAssociations(item, [item[propName]], true);
+      item[propName] = null;
+    }
   }
 
   override public function hasOne(association:HasOne):void
   {
     var propName:String = association.point.property.name;
-    association.destination.updateAssociations(item, [item[propName]], true);
-    item[propName] = null;
+
+    if (item[propName] != null)
+    {
+      association.destination.updateAssociations(item, [item[propName]], true);
+      item[propName] = null;
+    }
   }
 
   override public function hasMany(association:HasMany):void
   {
+    var destinationItems:Array = association.destination.getByForeignKey(item);
+    removeAssociatedItems(association.point, destinationItems);
+
+    association.destination.updateAssociations(item, destinationItems, true);
   }
 
   override public function hasAndBelongsToMany(association:HasAndBelongsToMany):void
   {
+    var destinationItems:Array = association.destination.getByForeignKey(item);
+    removeAssociatedItems(association.point, destinationItems);
+
+    association.destination.updateAssociations(item, destinationItems, true);
   }
 }
 }

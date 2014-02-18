@@ -2,3 +2,4 @@ out/test/DataMapper/_flexunit.swf
 .idea/workspace.xml
 out/production/DataMapper/DataMapper.swc
 .idea/codeStyleSettings.xml
+*.orig

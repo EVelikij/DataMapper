@@ -25,5 +25,7 @@ public interface IDataMap
   function get hasAndBelongsToManyPoints():Array;
 
   function get repositoryType():Class;
+
+  function clean():void;
 }
 }

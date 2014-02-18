@@ -3,7 +3,7 @@
   <component name="FlexBuildConfigurationManager" active="DataMapper">
     <configurations>
       <configuration name="DataMapper" output-type="Library" output-file="DataMapper.swc" output-folder="$MODULE_DIR$/out/production/DataMapper">
-        <dependencies target-player="11.8">
+        <dependencies target-player="11.9">
           <entries>
             <entry library-id="bd8e6b5f-eb1c-4fe7-9d18-1da4fb09d77d">
               <dependency linkage="Merged" />
@@ -21,15 +21,21 @@
               <dependency linkage="Merged" />
             </entry>
           </entries>
-          <sdk name="4.10" />
+          <sdk name="Flex 4.11.0 (AIR 3.9)" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/metadata.xml" />
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />
       </configuration>
     </configurations>
-    <compiler-options />
+    <compiler-options>
+      <map>
+        <entry key="compiler.keep-as3-metadata" value="Id&#10;HasOne&#10;HasMany&#10;HasAndBelongsToMany&#10;ForeignKey&#10;BelongsTo&#10;Repository" />
+      </map>
+    </compiler-options>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -37,7 +43,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/testSrc" isTestSource="true" />
     </content>
-    <orderEntry type="jdk" jdkName="4.10" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="jdk" jdkName="Flex 4.11.0 (AIR 3.9)" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
       <library type="flex">

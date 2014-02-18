@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations version="1.0">
+    <metadata name="Id">
+        <context name="variable"/>
+    </metadata>
+
+    <metadata name="HasOne">
+        <context name="variable"/>
+    </metadata>
+
+    <metadata name="HasMany">
+        <context name="variable"/>
+        <attribute name="type" type="class" required="true" hint="classes"/>
+    </metadata>
+
+    <metadata name="HasAndBelongsToMany">
+        <context name="variable"/>
+        <attribute name="type" type="class" required="true" hint="classes"/>
+    </metadata>
+
+    <metadata name="ForeignKey">
+        <context name="variable"/>
+        <attribute name="type" type="class" required="true" hint="classes"/>
+    </metadata>
+
+    <metadata name="BelongsTo">
+        <context name="variable"/>
+        <attribute name="type" type="class" required="true" hint="classes"/>
+    </metadata>
+
+    <metadata name="Repository">
+        <context name="variable" type="mx.collections.ArrayCollection"/>
+        <attribute name="type" type="class" required="true" hint="classes"/>
+    </metadata>
+
+</annotations>

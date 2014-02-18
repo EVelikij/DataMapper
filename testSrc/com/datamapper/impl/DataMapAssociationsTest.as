@@ -22,11 +22,49 @@ import mx.collections.ArrayCollection;
 import org.hamcrest.assertThat;
 import org.hamcrest.collection.arrayWithSize;
 import org.hamcrest.collection.hasItem;
+import org.hamcrest.object.equalTo;
 
 import spark.components.Group;
 
+[RunWith("org.flexunit.runners.Parameterized")]
 public class DataMapAssociationsTest
 {
+  //--------------------------------------------------------------------------
+  //
+  //  Parameters
+  //
+  //--------------------------------------------------------------------------
+  public static function initGroupParams():Array
+  {
+    // groupId | studentsCount
+    return [ [1, 2],
+             [2, 3] ];
+  }
+
+  public static function initStudentsParams():Array
+  {
+    // studentId | groupId | profileId | teachersCount
+    return [ [1, 1, 1, 1],
+             [2, 1, 0, 2],
+             [3, 2, 0, 1],
+             [4, 2, 0, 1],
+             [5, 2, 0, 0]];
+  }
+
+  public static function initProfilesParams():Array
+  {
+    // profileId | studentId
+    return [ [1, 1] ];
+  }
+
+  public static function initTeachersParams():Array
+  {
+    // profileId | studentsCount
+    return [ [1, 3],
+             [2, 2]];
+  }
+
+
   //--------------------------------------------------------------------------
   //
   //  Variables
@@ -68,8 +106,10 @@ public class DataMapAssociationsTest
   public function tearDown():void
   {
     ds = null;
-    students = null;
-    groups = null;
+    students.removeAll();
+    groups.removeAll();
+    profiles.removeAll();
+    teachers.removeAll();
   }
 
 
@@ -96,22 +136,73 @@ public class DataMapAssociationsTest
     assertThat(groupsRepository.map.associations, arrayWithSize(0));
   }
 
-  [Test]
-  public function testInsert():void
+  [Test(dataProvider="initGroupParams")]
+  public function testInitGroup(groupId:int, studentsCount:int):void
   {
+    initData();
+
+    var group:GroupDTO = groupsRepository.getItemById(groupId);
+
+    assertThat("[HasMany] association for GroupDTO doesn't work correctly",
+      group.students.length, equalTo(studentsCount))
+  }
+
+  [Test(dataProvider="initStudentsParams")]
+  public function testInitStudents(studentId:int, groupId:int, profileId:int, teachersCount:int):void
+  {
+    initData();
+
+    var student:StudentDTO = studentsRepository.getItemById(studentId);
+    var group:GroupDTO = groupsRepository.getItemById(groupId);
+    var profile:ProfileDTO = profileRepository.getItemById(profileId);
+
+    assertThat("[HasOne] association for StudentDTO doesn't work correctly",
+      student.group, equalTo(group));
+
+    assertThat("[BelongsTo] association for StudentDTO doesn't work correctly",
+      student.profile, equalTo(profile));
+
+    assertThat("[HasAndBelongsToMany] association for StudentDTO doesn't work correctly",
+      student.teachers.length, equalTo(teachersCount));
+  }
+
+  [Test(dataProvider="initProfilesParams")]
+  public function testInitProfiles(profileId:int, studentId:int):void
+  {
+    initData();
+
+    var profile:ProfileDTO = profileRepository.getItemById(profileId);
+    var student:StudentDTO = studentsRepository.getItemById(studentId);
+
+    assertThat("[BelongsTo] association for ProfileDTO doesn't work correctly",
+      profile.student, equalTo(student));
+  }
+
+  [Test(dataProvider="initTeachersParams")]
+  public function testInitTeachers(teacherId:int, studentsCount:int):void
+  {
+    initData();
+
+    var teacher:TeacherDTO = teachersRepository.getItemById(teacherId);
+
+    assertThat("[HasAndBelongsToMany] association for TeacherDTO doesn't work correctly",
+        teacher.students.length, equalTo(studentsCount));
+  }
+
+
+  //--------------------------------------------------------------------------
+  //
+  //  Utils
+  //
+  //--------------------------------------------------------------------------
+  private function initData():void
+  {
+    // insert data to repository
     teachers.addAll(EntityFactory.createTeachers(Storage.DATA));
     groups.addAll(EntityFactory.createGroups(Storage.DATA));
     students.addAll(EntityFactory.createStudents(Storage.DATA));
     profiles.addAll(EntityFactory.createProfiles(Storage.DATA));
-
-    students.removeItemAt(1);
-
-    trace();
   }
-
-
-
-
 
 }
 }

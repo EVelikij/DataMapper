@@ -37,6 +37,8 @@ public interface IRepository extends IEventDispatcher
    */
   function getItemById(id:*):*;
 
+  function clean():void;
+
   /**
    * Return inner key value for entity item that is included in <code>source</code>
    * @param entity item for with the value must be find

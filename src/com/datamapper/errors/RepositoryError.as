@@ -22,6 +22,7 @@ public class RepositoryError extends Error
   public static const REPOSITORY_EXIT_TEMPLATE:String = "Repository for type {0} already exist in the DataSource.";
   public static const ENTITY_TYPE_TEMPLATE:String = "Item of {0} type could no exist in repository for type {1}.";
   public static const REPOSTITY_BY_ABSTRACT_TYPE_ERROR:String = "DataSource contains several repositories for type {0}.";
+  public static const ENTITY_WITH_ID_TEMPLATE:String = "Item with [Id] {0} already exist in repository for type {1}.";
 
 
   //--------------------------------------------------------------------------
@@ -47,8 +48,18 @@ public class RepositoryError extends Error
   {
     var msg:String = StringUtil.substitute(REPOSTITY_BY_ABSTRACT_TYPE_ERROR, getQualifiedClassName(entity));
 
+
+
     return new RepositoryError(msg);
   }
+
+  public static function entityWithIdExist(id:String, repositoryType:Class):RepositoryError
+  {
+    var msg:String = StringUtil.substitute(ENTITY_WITH_ID_TEMPLATE, id, getQualifiedClassName(repositoryType));
+
+    return new RepositoryError(msg);
+  }
+
 
 
   //--------------------------------------------------------------------------
