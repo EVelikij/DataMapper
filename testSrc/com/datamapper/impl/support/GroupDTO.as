@@ -9,7 +9,7 @@ package com.datamapper.impl.support
 {
 import mx.collections.ArrayCollection;
 
-public class GroupDTO
+public class GroupDTO extends BaseGroupDTO
 {
   [Id]
   public var id:int;

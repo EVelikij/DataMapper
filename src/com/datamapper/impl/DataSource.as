@@ -14,6 +14,8 @@ import com.datamapper.events.RepositoryEvent;
 
 import flash.events.EventDispatcher;
 import flash.utils.Dictionary;
+import flash.utils.getDefinitionByName;
+import flash.utils.getQualifiedSuperclassName;
 
 import mx.collections.ArrayCollection;
 
@@ -42,6 +44,7 @@ public class DataSource extends EventDispatcher implements IDataSource
   //--------------------------------------------------------------------------
   private var repositories:Array = [];
   private var repositoryTypeMap:Dictionary = new Dictionary();
+  private var abstractRepositoryTypeMap:Dictionary = new Dictionary();
 
 
   //--------------------------------------------------------------------------
@@ -98,7 +101,41 @@ public class DataSource extends EventDispatcher implements IDataSource
   {
     var type:Class = entityOrClass is Class ? entityOrClass : Object(entityOrClass).constructor;
 
-    return repositoryTypeMap[type];
+    // find repository by type
+    if (repositoryTypeMap[type])
+      return repositoryTypeMap[type];
+    else if (abstractRepositoryTypeMap[type])
+      return abstractRepositoryTypeMap[type];
+
+    var result:IRepository;
+
+    // now find repository by inheritance
+    for each (var rep:IRepository in repositories)
+    {
+      var curr:Class = getDefinitionByName(getQualifiedSuperclassName(rep.type)) as Class;
+      var prev:Class = null;
+
+      while (curr != Object && prev != curr)
+      {
+        if (curr == type && result == null)
+        {
+          result = rep;
+          break;
+        }
+        else if (curr == type && result != null)
+          throw RepositoryError.abstractEntityType(entityOrClass);
+
+        prev = curr;
+        // get super class
+        curr = getDefinitionByName(getQualifiedSuperclassName(rep.type)) as Class;
+      }
+    }
+
+    // save founded repository
+    if (result)
+      abstractRepositoryTypeMap[type] = result;
+
+    return result;
   }
 
   public function hasRepositoryFor(entityOrClass:*):Boolean

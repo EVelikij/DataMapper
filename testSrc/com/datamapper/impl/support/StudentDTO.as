@@ -14,11 +14,11 @@ public class StudentDTO
 
   public var name:String;
 
-  [ForeignKey(type="com.datamapper.impl.support.GroupDTO")]
+  [ForeignKey(type="com.datamapper.impl.support.BaseGroupDTO")]
   public var groupId:int;
 
   [HasOne]
-  public var group:GroupDTO;
+  public var group:BaseGroupDTO;
 
   [BelongsTo]
   public var profile:ProfileDTO;

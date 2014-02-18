@@ -357,7 +357,7 @@ class PendingAssociation
   //--------------------------------------------------------------------------
   public function repositoryAdded(ds:IDataSource, rep:IRepository):IAssociation
   {
-    if (point.destinationType != rep.type)
+    if (ds.getRepositoryFor(point.destinationType) == null)
       return null;
 
     return new factory(point, rep);

@@ -7,10 +7,14 @@
  */
 package com.datamapper.impl
 {
+import com.datamapper.core.IRepository;
 import com.datamapper.errors.RepositoryError;
 import com.datamapper.events.RepositoryEvent;
 import com.datamapper.impl.support.GroupDTO;
 import com.datamapper.impl.support.StudentDTO;
+import com.datamapper.impl.support.inheritance.BaseEntity;
+import com.datamapper.impl.support.inheritance.RefinedEntity;
+import com.datamapper.impl.support.inheritance.RefinedEntity2;
 
 import mx.collections.ArrayCollection;
 
@@ -151,5 +155,30 @@ public class DataSourceTest
 
     assertThat(counter, equalTo(0));
   }
+
+  [Test]
+  public function testGetRepositoryForByAbstractType():void
+  {
+    // register new repository
+    var rep:IRepository = ds.addRepository(new ArrayCollection(), RefinedEntity);
+
+    assertThat(rep, equalTo(ds.getRepositoryFor(BaseEntity)));
+    assertThat(rep, equalTo(ds.getRepositoryFor(new BaseEntity())));
+  }
+
+  [Test]
+  /**
+   * try to get repository by abstract data type when we have some
+   * repositories with extends this tyoe
+   */
+  public function testGetRepositoryForByAbstractType2():void
+  {
+    // register new repository
+    var rep:IRepository = ds.addRepository(new ArrayCollection(), RefinedEntity);
+    var rep2:IRepository = ds.addRepository(new ArrayCollection(), RefinedEntity2);
+
+    assertThat(function():void { equalTo(ds.getRepositoryFor(BaseEntity));}, throws(RepositoryError));
+  }
+
 }
 }
