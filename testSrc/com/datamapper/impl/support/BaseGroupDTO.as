@@ -7,10 +7,14 @@
  */
 package com.datamapper.impl.support
 {
-public class BaseGroupDTO
+import org.flexunit.events.rule.IEventExpectation;
+
+public class BaseGroupDTO implements IGroupDTO
 {
   public function doStuff():void
   {
   }
+
+
 }
 }

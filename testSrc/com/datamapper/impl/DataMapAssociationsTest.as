@@ -10,8 +10,10 @@ package com.datamapper.impl
 import com.datamapper.core.IDataMap;
 import com.datamapper.core.IDataSource;
 import com.datamapper.core.IRepository;
+import com.datamapper.impl.support.BaseGroupDTO;
 import com.datamapper.impl.support.EntityFactory;
 import com.datamapper.impl.support.GroupDTO;
+import com.datamapper.impl.support.IGroupDTO;
 import com.datamapper.impl.support.ProfileDTO;
 import com.datamapper.impl.support.Storage;
 import com.datamapper.impl.support.StudentDTO;
@@ -100,6 +102,8 @@ public class DataMapAssociationsTest
     groupsRepository = ds.addRepository(groups, GroupDTO);
     profileRepository = ds.addRepository(profiles, ProfileDTO);
     teachersRepository = ds.addRepository(teachers, TeacherDTO);
+
+    ds.getRepositoryFor(IGroupDTO);
   }
 
   [After]
@@ -188,6 +192,18 @@ public class DataMapAssociationsTest
     assertThat("[HasAndBelongsToMany] association for TeacherDTO doesn't work correctly",
         teacher.students.length, equalTo(studentsCount));
   }
+
+  [Test]
+  public function testAdd():void
+  {
+    initData();
+
+    var student:StudentDTO = EntityFactory.createStudent(6, "Bill", 2);
+    students.addItem(student);
+
+    students.removeAll();
+  }
+
 
 
   //--------------------------------------------------------------------------

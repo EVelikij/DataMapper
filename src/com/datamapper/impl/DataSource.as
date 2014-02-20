@@ -11,6 +11,8 @@ import com.datamapper.core.IDataSource;
 import com.datamapper.core.IRepository;
 import com.datamapper.errors.RepositoryError;
 import com.datamapper.events.RepositoryEvent;
+import com.datamapper.system.reflection.DescribeType;
+import com.datamapper.system.reflection.MetadataTypeDescriptor;
 
 import flash.events.EventDispatcher;
 import flash.utils.Dictionary;
@@ -111,26 +113,35 @@ public class DataSource extends EventDispatcher implements IDataSource
 
     var result:IRepository;
 
+
+
     // now find repository by inheritance
     for each (var rep:IRepository in repositories)
     {
-      var curr:Class = getDefinitionByName(getQualifiedSuperclassName(rep.type)) as Class;
-      var prev:Class = null;
-
-      while (curr != Object && prev != curr)
+      var xml:XML = DescribeType.getDescriptor(rep.type).description;
+      var checkType:Function = function(typeList:XMLList):Boolean
       {
-        if (curr == type && result == null)
+        for each (var ex:XML in typeList)
         {
-          result = rep;
-          break;
-        }
-        else if (curr == type && result != null)
-          throw RepositoryError.abstractEntityType(entityOrClass);
+          if (ex.@type == "Class" || ex.@type == "Object")
+            continue;
 
-        prev = curr;
-        // get super class
-        curr = getDefinitionByName(getQualifiedSuperclassName(rep.type)) as Class;
-      }
+          var curr:Class = getDefinitionByName(ex.@type) as Class;
+
+          if (curr == type)
+            return true;
+        }
+
+        return false;
+      };
+
+      var classRepostitory:Boolean = checkType(xml.factory.extendsClass);
+      var interfaceRepository:Boolean = checkType(xml.factory.implementsInterface);
+
+      if ((classRepostitory || interfaceRepository) && result == null)
+        result = rep;
+      else if ((classRepostitory || interfaceRepository) && result != null)
+        throw RepositoryError.abstractEntityType(entityOrClass);
     }
 
     // save founded repository
