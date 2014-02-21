@@ -99,7 +99,7 @@ public class Repository extends EventDispatcher implements IRepository
       return hashed[id];
 
     // loop by each item in repository and check on inner key property exist
-    for each (var item:* in _source)
+    /*for each (var item:* in _source)
     {
       if (item.hasOwnProperty(innerKeyName) && item[innerKeyName] == id)
       {
@@ -107,7 +107,7 @@ public class Repository extends EventDispatcher implements IRepository
         return item;
       }
 
-    }
+    }*/
 
     return null;
   }
