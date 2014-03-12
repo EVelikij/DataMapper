@@ -2,97 +2,43 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="DataMapper">
     <configurations>
-      <configuration name="DataMapper" output-type="Library" output-file="DataMapper.swc" output-folder="$MODULE_DIR$/out/production/DataMapper">
-        <dependencies target-player="11.8">
+      <configuration name="DataMapper" output-type="Library" output-file="DataMapper.swc" output-folder="$MODULE_DIR$/bin">
+        <dependencies target-player="11.9">
           <entries>
-            <entry library-id="bd8e6b5f-eb1c-4fe7-9d18-1da4fb09d77d">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="a0b3cd24-733c-4513-97eb-577066701394">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="bc19afe6-b218-4ac5-8359-42e7c5397936">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="4806649f-39c7-4973-b09d-f7b2e768b5b9">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="b6fe01b8-2bcc-4d5c-a7cd-629f0d408d6e">
+            <entry library-id="f6eb584f-a96b-405b-9662-03507fad78e2">
               <dependency linkage="Merged" />
             </entry>
           </entries>
-          <sdk name="Flex 4.9.1 (AIR 3.8)" />
+          <sdk name="Flex 4.11.0 (AIR 3.9)" />
         </dependencies>
         <compiler-options>
-          <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/metadata.xml" />
+          <map>
+            <entry key="compiler.locale" value="en_US" />
+          </map>
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />
       </configuration>
     </configurations>
-    <compiler-options>
-      <map>
-        <entry key="compiler.keep-as3-metadata" value="Id&#10;HasOne&#10;HasMany&#10;HasAndBelongsToMany&#10;ForeignKey&#10;BelongsTo&#10;Repository" />
-      </map>
-    </compiler-options>
+    <compiler-options />
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/testSrc" isTestSource="true" />
     </content>
-    <orderEntry type="jdk" jdkName="4.9.1 (AIR 3.8)" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="jdk" jdkName="Flex 4.11.0 (AIR 3.9)" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="bd8e6b5f-eb1c-4fe7-9d18-1da4fb09d77d" />
+        <properties id="f6eb584f-a96b-405b-9662-03507fad78e2" />
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/hamcrest-as3-flex-1.1.3.swc!/" />
+          <root url="file://$MODULE_DIR$/libs" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="a0b3cd24-733c-4513-97eb-577066701394" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/fluint-extensions-4.1.0-8-4.1.0.16076.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="bc19afe6-b218-4ac5-8359-42e7c5397936" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/flexunit-cilistener-4.1.0-8-4.1.0.16076.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="4806649f-39c7-4973-b09d-f7b2e768b5b9" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/flexunit-4.1.0-8-flex_4.1.0.16076.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="b6fe01b8-2bcc-4d5c-a7cd-629f0d408d6e" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/mockolate-0.12.4-flex.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
   </component>

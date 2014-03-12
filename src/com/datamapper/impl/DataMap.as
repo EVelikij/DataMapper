@@ -29,6 +29,8 @@ import com.datamapper.system.reflection.MetadataHostProperty;
 import com.datamapper.system.reflection.MetadataTag;
 import com.datamapper.system.reflection.MetadataTypeDescriptor;
 
+import flash.utils.getDefinitionByName;
+
 import flash.utils.getQualifiedClassName;
 
 public class DataMap implements IDataMap
@@ -292,8 +294,11 @@ public class DataMap implements IDataMap
     for each (var key:MetadataTag in foreignKeysTags)
     {
       var foreignKeyType:String = key.getArg(MetadataTagArguments.TYPE).value;
+      var fkType:Class = getDefinitionByName(foreignKeyType) as Class;
 
       if (foreignKeyType == className)
+        return key.host as MetadataHostProperty;
+      else if (fkType && value is fkType)
         return key.host as MetadataHostProperty;
     }
 
